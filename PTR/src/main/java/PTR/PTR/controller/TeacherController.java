@@ -15,12 +15,12 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
     // 강사의 1:1훈련 가격 수정
-    @PostMapping("changeTeacherPrice")
+    @PostMapping("/api/changeTeacherPrice")
     public ResponseEntity<Teacher> changeTeacherPrice(@RequestBody Teacher teacher){
         return new ResponseEntity<>(teacherService.changeTeacher(teacher), HttpStatus.OK);
     }
 
-    @GetMapping("/teacher/{id}")
+    @GetMapping("/api/teacher/{id}")
     public ResponseEntity<Teacher> getTeacherById(@PathVariable long id) {
         return new ResponseEntity<>(teacherService.getTeacherById(id), HttpStatus.OK);
     }

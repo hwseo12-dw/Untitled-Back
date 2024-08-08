@@ -18,32 +18,32 @@ public class CalendarController {
         this.calendarService = calendarService;
     }
 
-    @PostMapping("/calendar")
+    @PostMapping("/api/calendar")
     public Calendar savecalendar(@RequestBody Calendar calendar){
         return calendarService.saveCalendar(calendar);
     }
 
-    @GetMapping("/calendar")
+    @GetMapping("/api/calendar")
     public Optional<Calendar> getCalendar(@RequestBody Calendar calendar){
         return calendarService.getCalendar(calendar);
     }
 
-    @DeleteMapping("/calendar")
+    @DeleteMapping("/api/calendar")
     public void deleteCalendar(@RequestBody Calendar calendar){
         calendarService.deleteCalendar(calendar);
     }
 
-    @PutMapping("/calendar")
+    @PutMapping("/api/calendar")
     public Calendar updatecalendar(@RequestBody Calendar calendar){
         return calendarService.updateCalendar(calendar);
     }
 
-    @PostMapping("/findCalendarDay5")
+    @PostMapping("/api/findCalendarDay5")
     public ResponseEntity<List<Calendar>> findCalendarDay5(@RequestBody User user){
         return new ResponseEntity<>(calendarService.findCalendarDay5(user), HttpStatus.OK);
     }
 
-    @PostMapping("/findCalenderMonth")
+    @PostMapping("/api/findCalenderMonth")
     public ResponseEntity<List<Calendar>> findCalenderMonth(@RequestBody Calendar calendar){
         return new ResponseEntity<>(calendarService.findCalenderMonth(calendar), HttpStatus.OK);
     }

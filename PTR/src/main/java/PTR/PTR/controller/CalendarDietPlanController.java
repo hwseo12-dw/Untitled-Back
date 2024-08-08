@@ -16,27 +16,27 @@ public class CalendarDietPlanController {
     public CalendarDietPlanController(CalendarDietPlanService calendarDietPlanService) {
         this.calendarDietPlanService = calendarDietPlanService;
     }
-    @PostMapping("/calendarDietPlan")
+    @PostMapping("/api/calendarDietPlan")
     public CalendarDietPlan saveCalendarDietPlan(@RequestBody CalendarDietPlan calendarDietPlan){
         return calendarDietPlanService.saveCalendarDietPlan(calendarDietPlan);
     }
 
-    @GetMapping("/calendarDietPlan")
+    @GetMapping("/api/calendarDietPlan")
     public Optional<CalendarDietPlan> getCalendarDietPlan(@RequestBody CalendarDietPlan calendarDietPlan){
         return calendarDietPlanService.getCalendarDietPlan(calendarDietPlan);
     }
 
-    @DeleteMapping("/calendarDietPlan")
+    @DeleteMapping("/api/calendarDietPlan")
     public void deleteCalendarDietPlan(@RequestBody CalendarDietPlan calendarDietPlan){
         calendarDietPlanService.deleteCalendarDietPlan(calendarDietPlan);
     }
 
-    @PutMapping("/calendarDietPlan")
+    @PutMapping("/api/calendarDietPlan")
     public CalendarDietPlan updateCalendarDietPlan(@RequestBody CalendarDietPlan calendarDietPlan){
         return calendarDietPlanService.updateCalendarDietPlan(calendarDietPlan);
     }
 
-    @PostMapping("/findCalendarDietPlanByCalendar")
+    @PostMapping("/api/findCalendarDietPlanByCalendar")
     public ResponseEntity<CalendarDietPlan> findCalendarDietPlanByCalendar(@RequestBody Calendar calendar){
         return new ResponseEntity<>(calendarDietPlanService.findCalendarDietPlanByCalendar(calendar), HttpStatus.OK);
     }

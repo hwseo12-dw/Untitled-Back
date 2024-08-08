@@ -16,48 +16,48 @@ public class FeedController {
         this.feedService = feedService;
     }
 
-    @PostMapping("/feed")
+    @PostMapping("/api/feed")
     public String saveFeed(@RequestBody Feed feed){
         feedService.saveFeed(feed);
         return "정상작동";
     }
 
     //피드 전체 조회
-    @GetMapping("/feed")
+    @GetMapping("/api/feed")
     public List<Feed> getFeed(){
         return feedService.getFeed();
     }
     //피드 아이디로 피드 한개 조회
-    @PostMapping("/feed/feed")
+    @PostMapping("/api/feed/feed")
     public Optional<Feed> getFeedByFeedId(@RequestBody Feed feed){
         return feedService.getFeedByFeedId(feed);
     }
-    @GetMapping("/getRecentFeed")
+    @GetMapping("/api/getRecentFeed")
     public List<Feed> getRecentFeed(){
         return feedService.getRecentFeed();
     }
 
-    @PostMapping("/feed/id")
+    @PostMapping("/api/feed/id")
     public List<Feed> getFeedById(@RequestBody User user){
         return feedService.getFeedById(user);
     }
 
-    @PostMapping("/feed/name")
+    @PostMapping("/api/feed/name")
     public List<Feed> getFeedByName(@RequestBody User user){
         return feedService.getFeedByName(user);
     }
 
-    @PostMapping("/deleteFeed")
+    @PostMapping("/api/deleteFeed")
     public void deleteFeed(@RequestBody Feed feed){
         feedService.deleteFeed(feed);
     }
 
-    @PutMapping("/feed")
+    @PutMapping("/api/feed")
     public Feed updateFeed(@RequestBody Feed feed){
         return feedService.updateFeed(feed);
     }
 
-    @PostMapping("/numberOfFeed")
+    @PostMapping("/api/numberOfFeed")
     public int getNumberOfFeed(@RequestBody User user){
         return feedService.getNumberOfFeed(user);
     }

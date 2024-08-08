@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadInterestLectures() {
     axios
-      .get("http://localhost:8080/findAllLecture")
+      .get("http://localhost:8080/api/findAllLecture")
       .then((response) => {
         console.log("데이터: ", response.data);
         displayLectures(response.data, interestLectureSection);
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (searchType === "강의명") {
       searchParams = { query: query };
       axios
-        .get("http://localhost:8080/searchLecture", { params: searchParams })
+        .get("http://localhost:8080/api/searchLecture", { params: searchParams })
         .then((response) => {
           console.log("검색 결과: ", response.data);
           if (response.data.length > 0) {
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (searchType === "강사명") {
       searchParams = { teacherName: query };
       axios
-        .get("http://localhost:8080/searchTeacher", { params: searchParams })
+        .get("http://localhost:8080/api/searchTeacher", { params: searchParams })
         .then((response) => {
           console.log("검색 결과: ", response.data);
           if (response.data.length > 0) {
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //     if (searchType === "강의명") {
 //       searchParams = { query: query };
 //       axios
-//         .get("http://localhost:8080/searchLecture", {
+//         .get("http://localhost:8080/api/searchLecture", {
 //           params: searchParams,
 //         })
 //         .then((response) => {
@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //     } else if (searchType === "강사명") {
 //       searchParams = { teacherName: query };
 //       axios
-//         .get("http://localhost:8080/searchTeacher", {
+//         .get("http://localhost:8080/api/searchTeacher", {
 //           params: searchParams,
 //         })
 //         .then((response) => {
@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //   // let userCategoryList = []
 
 //   // axios
-//   // .post("http://localhost:8080/findUserCategory", user)
+//   // .post("http://localhost:8080/api/findUserCategory", user)
 //   // .then((response)=>{
 //   //   console.log("데이터: ", response.data)
 //   //   findUserCategory(response.data)
@@ -419,7 +419,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //   // }
 
 //   // axios
-//   // .post("http://localhost:8080/findLectureAllByCategoryIn", user)
+//   // .post("http://localhost:8080/api/findLectureAllByCategoryIn", user)
 //   // .then((response)=>{
 //   //     console.log("데이터: ", response.data)
 //   //     createMyLecturescrap(response.data)

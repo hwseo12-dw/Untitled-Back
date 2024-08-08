@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     console.log(loginData);
     axios
-      .post("http://localhost:8080/user/login", loginData)
+      .post("http://localhost:8080/api/user/login", loginData)
       .then((response) => {
         if (response.status === 200) {
           alert("로그인 성공!");
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelector("#logoutButton").addEventListener("click", () => {
     axios
-    .post("http://localhost:8080/user/logout")
+    .post("http://localhost:8080/api/user/logout")
     .then((response) => {
       if (response.status === 200) {
         alert("로그아웃 성공!");
@@ -80,7 +80,7 @@ let user = ""
 
 function sessionCurrent(){
   axios
-  .get("http://localhost:8080/current", {withCredentials:true})
+  .get("http://localhost:8080/api/current", {withCredentials:true})
   .then((response)=>{
       console.log("데이터: ", response);
       if(response.status == 200){

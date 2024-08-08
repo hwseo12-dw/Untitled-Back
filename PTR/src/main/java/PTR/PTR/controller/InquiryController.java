@@ -21,21 +21,21 @@ public class InquiryController {
         this.inquiryService = inquiryService;
     }
     // 1:1 문의하기
-    @PostMapping("askInquiry")
+    @PostMapping("/api/askInquiry")
     public ResponseEntity<Inquiry> askInquiry(@RequestBody Inquiry inquiry){
         return new ResponseEntity<>(inquiryService.askInquiry(inquiry), HttpStatus.OK);
     }
     // 모든 1:1 문의 조회
-    @GetMapping("findInquiry")
+    @GetMapping("/api/findInquiry")
     public ResponseEntity<List<Inquiry>> findInquiry(){
         return new ResponseEntity<>(inquiryService.findInquiry(), HttpStatus.OK);
     }
     // 유저의 1:1문의찾기
-    @PostMapping("myInquiry")
+    @PostMapping("/api/myInquiry")
     public ResponseEntity<List<Inquiry>> myInquiry(@RequestBody User user){
         return new ResponseEntity<>(inquiryService.myInquiry(user), HttpStatus.OK);
     }
-    @GetMapping("findNotReply")
+    @GetMapping("/api/findNotReply")
     public ResponseEntity<List<Inquiry>> findNotReply(){
         return new ResponseEntity<>(inquiryService.findNotReply(), HttpStatus.OK);
     }

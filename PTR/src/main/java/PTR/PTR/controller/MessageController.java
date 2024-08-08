@@ -19,12 +19,12 @@ public class MessageController {
         this.messageService = messageService;
     }
     // 메시지 생성
-    @PostMapping("createMessage")
+    @PostMapping("/api/createMessage")
     public ResponseEntity<String> createMessage(@RequestBody Message message){
         return new ResponseEntity<>(messageService.createMessage(message), HttpStatus.OK);
     }
     // 메시지 보기
-    @PostMapping("viewMessage")
+    @PostMapping("/api/viewMessage")
     public ResponseEntity<List<Message>> viewMessage(@RequestBody List<User> users){
         User user = users.get(0);
         User user2 = users.get(1);

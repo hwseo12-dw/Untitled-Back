@@ -21,21 +21,21 @@ public class LectureScrapController {
         this.lectureScrapService = lectureScrapService;
     }
     // 강의 스크랩하기
-    @PostMapping("scrapLecture")
+    @PostMapping("/api/scrapLecture")
     public ResponseEntity<String> scrapLecture(@RequestBody LectureScrap lectureScrap){
         return new ResponseEntity<>(lectureScrapService.scrapLecture(lectureScrap), HttpStatus.OK);
     }
     // 강의 스크랩 지우기
-    @PostMapping("deleteScrapLecture")
+    @PostMapping("/api/deleteScrapLecture")
     public ResponseEntity<String> deleteScrapLecture(@RequestBody LectureScrap lectureScrap){
         return new ResponseEntity<>(lectureScrapService.deleteScrapLecture(lectureScrap), HttpStatus.OK);
     }
     // 유저가 스크랩한 강의 조회
-    @PostMapping("myScrapLecture")
+    @PostMapping("/api/myScrapLecture")
     public ResponseEntity<List<LectureScrap>> myScrapLecture(@RequestBody User user){
         return new ResponseEntity<>(lectureScrapService.myScrapLecture(user), HttpStatus.OK);
     }
-    @PostMapping("findScrapLectureByUserAndLecture")
+    @PostMapping("/api/findScrapLectureByUserAndLecture")
     public ResponseEntity<LectureScrap> findScrapLectureByUserAndLecture(@RequestBody LectureScrap lectureScrap){
         return new ResponseEntity<>(lectureScrapService.findScrapLectureByUserAndLecture(lectureScrap), HttpStatus.OK);
     }

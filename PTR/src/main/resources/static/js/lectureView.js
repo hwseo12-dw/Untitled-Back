@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 console.log("id: ", id);
 
-const url = "http://localhost:8080/lecture/" + id;
+const url = "http://localhost:8080/api/lecture/" + id;
 
 function sessionCreateAll(user) {
   axios
@@ -20,14 +20,14 @@ function sessionCreateAll(user) {
 
   function create(lecture, data) {
     axios
-      .post("http://localhost:8080/findByLectureId", lecture)
+      .post("http://localhost:8080/api/findByLectureId", lecture)
       .then((lectureUser) => {
         console.log("1: ", lectureUser.data);
         axios
-          .post("http://localhost:8080/ratingAVG", lecture)
+          .post("http://localhost:8080/api/ratingAVG", lecture)
           .then((ratingAVG) => {
             axios
-              .post("http://localhost:8080/findLectureCategory", lecture)
+              .post("http://localhost:8080/api/findLectureCategory", lecture)
               .then((category) => {
                 console.log("2: ", category.data);
                 console.log("1: ", lectureUser.data);
@@ -71,7 +71,7 @@ function sessionCreateAll(user) {
 
     const lecture_teacher_num = document.querySelector(".lecture_teacher_num");
     axios
-      .post("http://localhost:8080/teacherSubscription", teacher)
+      .post("http://localhost:8080/api/teacherSubscription", teacher)
       .then((data) => {
         console.log("1: ", data.data);
         lecture_teacher_num.textContent = "구독자 " + data.data + "명";
@@ -103,14 +103,14 @@ function sessionCreateAll(user) {
       });
     } else {
       axios
-        .post("http://localhost:8080/subscriptionCheck", { user, teacher })
+        .post("http://localhost:8080/api/subscriptionCheck", { user, teacher })
         .then((data) => {
           console.log("구독여부: ", data.data);
           if (data.data != "") {
             lecture_subscription.textContent = "구독중";
             lecture_subscription.addEventListener("click", () => {
               axios
-                .post("http://localhost:8080/subscriptionCansel", {
+                .post("http://localhost:8080/api/subscriptionCansel", {
                   id: data.data.id,
                 })
                 .then((data) => {
@@ -125,7 +125,7 @@ function sessionCreateAll(user) {
             lecture_subscription.textContent = "구독";
             lecture_subscription.addEventListener("click", () => {
               axios
-                .post("http://localhost:8080/subscription", { user, teacher })
+                .post("http://localhost:8080/api/subscription", { user, teacher })
                 .then((data) => {
                   console.log("구독: ", data.data);
                   location.reload();
@@ -201,7 +201,7 @@ function sessionCreateAll(user) {
           var result = confirm("정말로 구매하시겠습니까?");
           if (result) {
             axios
-              .post("http://localhost:8080/buyLecture", {
+              .post("http://localhost:8080/api/buyLecture", {
                 lecture: { id: data.id, price: data.price },
                 user: user,
               })
@@ -287,7 +287,7 @@ function sessionCreateAll(user) {
       });
     } else {
       axios
-        .post("http://localhost:8080/findScrapLectureByUserAndLecture", {
+        .post("http://localhost:8080/api/findScrapLectureByUserAndLecture", {
           user,
           lecture,
         })
@@ -297,7 +297,7 @@ function sessionCreateAll(user) {
             lecture_btn_scrap.textContent = "스크랩중";
             lecture_btn_scrap.addEventListener("click", () => {
               axios
-                .post("http://localhost:8080/deleteScrapLecture", {
+                .post("http://localhost:8080/api/deleteScrapLecture", {
                   id: data.data.id,
                 })
                 .then((data) => {
@@ -312,7 +312,7 @@ function sessionCreateAll(user) {
             lecture_btn_scrap.textContent = "스크랩";
             lecture_btn_scrap.addEventListener("click", () => {
               axios
-                .post("http://localhost:8080/scrapLecture", { user, lecture })
+                .post("http://localhost:8080/api/scrapLecture", { user, lecture })
                 .then((data) => {
                   console.log("스크랩: ", data.data);
                   location.reload();
@@ -417,7 +417,7 @@ function sessionCreateAll(user) {
             }
 
             axios
-            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .post("http://localhost:8080/api/changeLectureUser", lectureUser)
             .then((response)=>{
                 console.log("데이터: ", response.data)
                 location.reload();
@@ -484,7 +484,7 @@ function sessionCreateAll(user) {
             }
 
             axios
-            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .post("http://localhost:8080/api/changeLectureUser", lectureUser)
             .then((response)=>{
                 console.log("데이터: ", response.data)
                 location.reload();
@@ -501,7 +501,7 @@ function sessionCreateAll(user) {
             teacherReview: ""
           }
           axios
-          .post("http://localhost:8080/changeLectureUser", lectureUser)
+          .post("http://localhost:8080/api/changeLectureUser", lectureUser)
           .then((response)=>{
               console.log("데이터: ", response.data)
               location.reload();
@@ -549,7 +549,7 @@ function sessionCreateAll(user) {
   // 코인충전소
   if (user.userId != "anonymousUser") {
     axios
-      .post("http://localhost:8080/findCoin", user)
+      .post("http://localhost:8080/api/findCoin", user)
       .then((response) => {
         console.log("데이터: ", response.data);
         cash(response.data);
@@ -634,7 +634,7 @@ function sessionCreateAll(user) {
         };
 
         axios
-          .post("http://localhost:8080/changeCoin", changeuser)
+          .post("http://localhost:8080/api/changeCoin", changeuser)
           .then((response) => {
             console.log("데이터: ", response.data);
             location.reload();
@@ -650,7 +650,7 @@ let user = "";
 
 function sessionCurrent() {
   axios
-    .get("http://localhost:8080/current", { withCredentials: true })
+    .get("http://localhost:8080/api/current", { withCredentials: true })
     .then((response) => {
       console.log("데이터: ", response);
       if (response.status == 200) {

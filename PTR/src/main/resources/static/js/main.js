@@ -1,5 +1,5 @@
 axios
-.get("http://localhost:8080/findAllLecture")
+.get("http://localhost:8080/api/findAllLecture")
 .then((response)=>{
     console.log("데이터: ", response.data)
     const recentVideo = response.data.slice(0,3);
@@ -26,7 +26,7 @@ function displayRecientVideo(recentVideo){
 }
 
 axios
-.get("http://localhost:8080/getRecentFeed")
+.get("http://localhost:8080/api/getRecentFeed")
 .then((response)=>{
     console.log("데이터: ", response.data)
     const recentFeed = response.data.slice(0,3);

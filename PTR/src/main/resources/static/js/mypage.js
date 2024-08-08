@@ -8,7 +8,7 @@ function sessionCreateAll(user){
 // 구독 및 영상
 function sessionSubscription(user){
     axios
-    .post("http://localhost:8080/mySubscription", user)
+    .post("http://localhost:8080/api/mySubscription", user)
     .then((response)=>{
         console.log("데이터: ", response.data)
         createMySubscription(response.data)   
@@ -18,7 +18,7 @@ function sessionSubscription(user){
     })
 
     axios
-    .post("http://localhost:8080/myBuyLecture", user)
+    .post("http://localhost:8080/api/myBuyLecture", user)
     .then((response)=>{
         console.log("데이터: ", response.data)
         createMyLecture(response.data) 
@@ -29,7 +29,7 @@ function sessionSubscription(user){
     })
 
     axios
-    .post("http://localhost:8080/myScrapLecture", user)
+    .post("http://localhost:8080/api/myScrapLecture", user)
     .then((response)=>{
         console.log("데이터: ", response.data)
         createMyLecturescrap(response.data) 
@@ -386,7 +386,7 @@ function createMyLectureReview(data){
                 teacherReview: ""
             }
             axios
-            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .post("http://localhost:8080/api/changeLectureUser", lectureUser)
             .then((response)=>{
                 console.log("데이터: ", response.data)
                 location.reload();
@@ -427,7 +427,7 @@ function createMyLectureReview(data){
             }
 
             axios
-            .post("http://localhost:8080/changeLectureUser", lectureUser)
+            .post("http://localhost:8080/api/changeLectureUser", lectureUser)
             .then((response)=>{
                 console.log("데이터: ", response.data)
                 location.reload();
@@ -454,7 +454,7 @@ function createMyLectureReview(data){
 // 1:1 트레이닝
 // function sessionTraning(user){
 //     axios
-//     .post("http://localhost:8080/myCallTraining", user)
+//     .post("http://localhost:8080/api/myCallTraining", user)
 //     .then((response)=>{
 //         console.log("데이터: ", response.data)
 //         createmyCallTraining(response.data)
@@ -464,7 +464,7 @@ function createMyLectureReview(data){
 //     })
 
 //     axios
-//     .post("http://localhost:8080/findCalendarDay5", user)
+//     .post("http://localhost:8080/api/findCalendarDay5", user)
 //     .then((response)=>{
 //         console.log("ㅎㅎ: ", response.data[0])
 //         findCalendarDay5(response.data)
@@ -614,7 +614,7 @@ function createMyLectureReview(data){
 //         }
 //         content_body_traning_cansleBtn1.addEventListener("click", ()=>{
 //             axios
-//             .post("http://localhost:8080/deleteCallTraining", deleteData)
+//             .post("http://localhost:8080/api/deleteCallTraining", deleteData)
 //             .then((response)=>{
 //                 console.log("데이터: ", response.data)
 //                 location.reload()
@@ -851,20 +851,20 @@ function createMyLectureReview(data){
 //     let stretchRecord = ""
 //     let yogaRecord = ""
 
-//     axios.post("http://localhost:8080/findCalendarDietPlanByCalendar", data)
+//     axios.post("http://localhost:8080/api/findCalendarDietPlanByCalendar", data)
 //         .then((response) => {
 //             carbohydrateGoal = response.data.carbohydrate;
 //             proteinGoal = response.data.protein;
 //             fatGoal = response.data.fat;
 
-//             return axios.post("http://localhost:8080/findCalendarDietRecordByCalendar", data);
+//             return axios.post("http://localhost:8080/api/findCalendarDietRecordByCalendar", data);
 //         })
 //         .then((response) => {
 //             carbohydrateRecord = response.data.carbohydrate;
 //             proteinRecord = response.data.protein;
 //             fatRecord = response.data.fat;
 
-//             return axios.post("http://localhost:8080/findCalendarExercisePlanByCalendar", data);
+//             return axios.post("http://localhost:8080/api/findCalendarExercisePlanByCalendar", data);
 //         })
 //         .then((response) => {
 //             aerobicGoal = response.data.aerobic;
@@ -872,7 +872,7 @@ function createMyLectureReview(data){
 //             stretchGoal = response.data.stretch;
 //             yogaGoal = response.data.yoga;
 
-//             return axios.post("http://localhost:8080/findCalendarExerciseRecordByCalendar", data);
+//             return axios.post("http://localhost:8080/api/findCalendarExerciseRecordByCalendar", data);
 //         })
 //         .then((response) => {
 //             aerobicRecord = response.data.aerobic;
@@ -969,7 +969,7 @@ function createMyLectureReview(data){
 function sessionCoin(user){
     console.log("여기: ", user)
     axios
-    .post("http://localhost:8080/findCoin", user)
+    .post("http://localhost:8080/api/findCoin", user)
     .then((response)=>{
         console.log("데이터: ", response.data)
         cash(response.data) 
@@ -1040,7 +1040,7 @@ function cash(data){
         }
         
         axios
-        .post("http://localhost:8080/changeCoin", changeuser)
+        .post("http://localhost:8080/api/changeCoin", changeuser)
         .then((response)=>{
             console.log("데이터: ", response.data)
             location.reload();
@@ -1057,7 +1057,7 @@ function cash(data){
 // 계정관리
 function sessionMyid(user){
     axios
-    .post("http://localhost:8080/sendUser", user)
+    .post("http://localhost:8080/api/sendUser", user)
     .then((response)=>{
         console.log("데이터: ", response.data)
         myid1(response.data) 
@@ -1067,7 +1067,7 @@ function sessionMyid(user){
     })
 
     axios
-    .post("http://localhost:8080/findUserCategory", user)
+    .post("http://localhost:8080/api/findUserCategory", user)
     .then((response)=>{
         console.log("데이터: ", response.data)
         myid11(response.data) 
@@ -1149,7 +1149,7 @@ document.querySelector(".myid_tap2_butten").addEventListener("click", async () =
     const promises = [];
 
     if (interests.length > 0) {
-        const interestPromise = axios.post("http://localhost:8080/saveUserCategory", interests)
+        const interestPromise = axios.post("http://localhost:8080/api/saveUserCategory", interests)
             .then(response => {
                 console.log("데이터: ", response.data);
             })
@@ -1164,7 +1164,7 @@ document.querySelector(".myid_tap2_butten").addEventListener("click", async () =
             userId: user.userId,
             userName: changename
         };
-        const namePromise = axios.post("http://localhost:8080/changeUserName", changeuser)
+        const namePromise = axios.post("http://localhost:8080/api/changeUserName", changeuser)
             .then(response => {
                 console.log("데이터: ", response.data);
             })
@@ -1179,7 +1179,7 @@ document.querySelector(".myid_tap2_butten").addEventListener("click", async () =
             userId: user.userId,
             password: changepassword
         };
-        const passwordPromise = axios.post("http://localhost:8080/changePassword", changeuser)
+        const passwordPromise = axios.post("http://localhost:8080/api/changePassword", changeuser)
             .then(response => {
                 console.log("데이터: ", response.data);
             })
@@ -1194,7 +1194,7 @@ document.querySelector(".myid_tap2_butten").addEventListener("click", async () =
             userId: user.userId,
             email: changeemail
         };
-        const emailPromise = axios.post("http://localhost:8080/changeUserEmail", changeuser)
+        const emailPromise = axios.post("http://localhost:8080/api/changeUserEmail", changeuser)
             .then(response => {
                 console.log("데이터: ", response.data);
             })
@@ -1209,7 +1209,7 @@ document.querySelector(".myid_tap2_butten").addEventListener("click", async () =
             userId: user.userId,
             birthday: changebirthday
         };
-        const birthdayPromise = axios.post("http://localhost:8080/changeUserBirthday", changeuser)
+        const birthdayPromise = axios.post("http://localhost:8080/api/changeUserBirthday", changeuser)
             .then(response => {
                 console.log("데이터: ", response.data);
             })
@@ -1239,7 +1239,7 @@ document.querySelector(".myid_tap3_butten").addEventListener("click", ()=>{
     console.log(myid_tap3_value_text.value);
 
     axios
-    .post("http://localhost:8080/changeProfileText", changeProfileText)
+    .post("http://localhost:8080/api/changeProfileText", changeProfileText)
     .then((response)=>{
         console.log("데이터: ", response.data)
     })
@@ -1260,7 +1260,7 @@ document.querySelector(".myid_tap3_butten").addEventListener("click", ()=>{
     //         profileImg: dataUrl
     //     };
     //     axios
-    //     .post("http://localhost:8080/changeProfileImg", changeProfileImg)
+    //     .post("http://localhost:8080/api/changeProfileImg", changeProfileImg)
     //     .then((response)=>{
     //         console.log("데이터: ", response.data)
     //     })
@@ -1273,7 +1273,7 @@ document.querySelector(".myid_tap3_butten").addEventListener("click", ()=>{
     // const myid_tap3_value = document.querySelector(".myid_tap3_value");
     // file = myid_tap3_value.files[0];
     // axios
-    // .post("http://localhost:8080/changeProfileImg", file)
+    // .post("http://localhost:8080/api/changeProfileImg", file)
     // .then((response)=>{
     //     console.log("데이터: ", response.data)
     // })
@@ -1629,7 +1629,7 @@ let user = ""
 
 function sessionCurrent(){
     axios
-    .get("http://localhost:8080/current", {withCredentials:true})
+    .get("http://localhost:8080/api/current", {withCredentials:true})
     .then((response)=>{
         console.log("데이터: ", response);
         if(response.status == 200){

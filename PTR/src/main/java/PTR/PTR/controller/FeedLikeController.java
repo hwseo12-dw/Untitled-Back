@@ -16,32 +16,32 @@ public class FeedLikeController {
         this.feedLikeService = feedLikeService;
     }
 
-    @PostMapping("/feedLike")
+    @PostMapping("/api/feedLike")
     public String feedLike(@RequestBody FeedLike feedLike){
         feedLikeService.feedLike(feedLike);
         return "정상작동";
     }
 
-    @DeleteMapping("/feedLike")
+    @DeleteMapping("/api/feedLike")
     public void deleteFeedLike(@RequestBody FeedLike feedLike){
         feedLikeService.deleteFeedLike(feedLike);
     }
-    @PostMapping("/deleteFeedLikeByFeed")
+    @PostMapping("/api/deleteFeedLikeByFeed")
     public void deleteFeedLikeByFeed(@RequestBody Feed feed){
         feedLikeService.deleteFeedLikeByFeed(feed);
     }
 
-    @PostMapping("/getFeedLike")
+    @PostMapping("/api/getFeedLike")
     public List<FeedLike> getFeedLike(@RequestBody Feed feed){
         return feedLikeService.getFeedLike(feed);
     }
 
-    @PostMapping("/numberOfFeedLike")
+    @PostMapping("/api/numberOfFeedLike")
     public int getNumberOfFeedLike(@RequestBody Feed feed){
         return feedLikeService.getNumberOfFeedLike(feed);
     }
 
-    @PostMapping("/checkFeedLikeClick")
+    @PostMapping("/api/checkFeedLikeClick")
     public boolean checkFeedLikeClick(@RequestBody FeedLike feedLike){
         return feedLikeService.checkFeedLikeClick(feedLike);
     }

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function fetchExercisePlan(date) {
     try {
       const response = await axios.get(
-        `http://localhost:8080/ptr/exerciseplan`,
+        `http://localhost:8080/api/ptr/exerciseplan`,
         {
           params: { date },
         }

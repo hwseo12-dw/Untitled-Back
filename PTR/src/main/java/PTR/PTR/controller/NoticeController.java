@@ -19,18 +19,18 @@ public class NoticeController {
         this.noticeService = noticeService;
     }
     // 공지사항 생성
-    @PostMapping("createNotice")
+    @PostMapping("/api/createNotice")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Notice> createNotice(@RequestBody Notice notice){
         return new ResponseEntity<>(noticeService.createNotice(notice), HttpStatus.OK);
     }
     // 전체 공지사항 조회
-    @PostMapping("findNotice")
+    @PostMapping("/api/findNotice")
     public ResponseEntity<List<Notice>> findNotice(){
         return new ResponseEntity<>(noticeService.findNotice(), HttpStatus.OK);
     }
     // 공지사항 검색
-    @PostMapping("searchNotice")
+    @PostMapping("/api/searchNotice")
     public ResponseEntity<List<Notice>> searchNotice(@RequestBody String title){
         return new ResponseEntity<>(noticeService.searchNotice(title), HttpStatus.OK);
     }

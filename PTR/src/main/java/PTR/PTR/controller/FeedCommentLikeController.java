@@ -16,36 +16,36 @@ public class FeedCommentLikeController {
     public FeedCommentLikeController(FeedCommentLikeService feedCommentLikeService) {
         this.feedCommentLikeService = feedCommentLikeService;
     }
-    @PostMapping("/feedCommentLike")
+    @PostMapping("/api/feedCommentLike")
     public String feedCommentLike(@RequestBody FeedCommentLike feedCommentLike){
         feedCommentLikeService.feedCommentLike(feedCommentLike);
         return "정상작동";
     }
 
-    @DeleteMapping("/feedCommentLike")
+    @DeleteMapping("/api/feedCommentLike")
     public void deleteFeedCommentLike(@RequestBody FeedCommentLike feedCommentLike){
         feedCommentLikeService.deleteFeedCommentLike(feedCommentLike);
     }
-    @PostMapping("/feedCommentLikeByFeedComment")
+    @PostMapping("/api/feedCommentLikeByFeedComment")
     public void deleteFeedCommentLikeByFeedComment(@RequestBody FeedComment feedComment){
         feedCommentLikeService.deleteFeedCommentLikeByFeedComment(feedComment);
     }
-    @PostMapping("/deleteFeedCommentLikeByFeed")
+    @PostMapping("/api/deleteFeedCommentLikeByFeed")
     public void deleteFeedCommentLikeByFeed(@RequestBody Feed feed){
         feedCommentLikeService.deleteFeedCommentLikeByFeed(feed);
     }
 
-    @PostMapping("/getFeedCommentLike")
+    @PostMapping("/api/getFeedCommentLike")
     public List<FeedCommentLike> getFeedCommentLike(@RequestBody FeedComment feedComment){
         return feedCommentLikeService.getFeedCommentLike(feedComment);
     }
 
-    @PostMapping("/checkFeedCommentLikeClick")
+    @PostMapping("/api/checkFeedCommentLikeClick")
     public boolean checkFeedCommentLikeClick(@RequestBody FeedCommentLike feedCommentLike){
         return feedCommentLikeService.checkFeedCommentLikeClick(feedCommentLike);
     }
 
-    @PostMapping("/numberOfFeedCommentLike")
+    @PostMapping("/api/numberOfFeedCommentLike")
     public int getNumberOfFeedCommentLike(@RequestBody FeedComment feedComment){
         return feedCommentLikeService.getNumberOfFeedCommentLike(feedComment);
     }

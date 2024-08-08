@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 console.log("id: ", id);
 
-const url = "http://localhost:8080/teacher/" + id;
+const url = "http://localhost:8080/api/teacher/" + id;
 
 function sessionCreateAll(user){
   axios
@@ -30,7 +30,7 @@ function sessionCreateAll(user){
 
     const lecture_teacher_num = document.querySelector(".content_body_teacher_subscription_num");
     axios
-    .post("http://localhost:8080/teacherSubscription", teacher)
+    .post("http://localhost:8080/api/teacherSubscription", teacher)
     .then((data)=>{
         console.log("1: ", data.data);
         lecture_teacher_num.textContent = "구독자 " + data.data + "명";
@@ -55,14 +55,14 @@ function sessionCreateAll(user){
       })
     }else{
       axios
-      .post("http://localhost:8080/subscriptionCheck", {user, teacher})
+      .post("http://localhost:8080/api/subscriptionCheck", {user, teacher})
       .then((data)=>{
           console.log("구독여부: ", data.data);
           if(data.data!=""){
               content_body_teacher_subscription_btn.textContent = "구독중"
               content_body_teacher_subscription_btn.addEventListener("click", ()=>{
                   axios
-                  .post("http://localhost:8080/subscriptionCansel", {id:data.data.id})
+                  .post("http://localhost:8080/api/subscriptionCansel", {id:data.data.id})
                   .then((data)=>{
                       console.log("구독취소: ", data.data);
                       location.reload()
@@ -75,7 +75,7 @@ function sessionCreateAll(user){
               content_body_teacher_subscription_btn.textContent = "구독"
               content_body_teacher_subscription_btn.addEventListener("click", ()=>{
                   axios
-                  .post("http://localhost:8080/subscription", {user, teacher})
+                  .post("http://localhost:8080/api/subscription", {user, teacher})
                   .then((data)=>{
                       console.log("구독: ", data.data);
                       location.reload()
@@ -107,7 +107,7 @@ function sessionCreateAll(user){
 
   function findTeacherLectureReversed(teacher){
     axios
-    .post("http://localhost:8080/findTeacherLectureReversed", teacher)
+    .post("http://localhost:8080/api/findTeacherLectureReversed", teacher)
     .then((response)=>{
       console.log("데이터: ", response.data)
       teacherLecture(response.data)
@@ -203,7 +203,7 @@ let user = ""
 
 function sessionCurrent(){
     axios
-    .get("http://localhost:8080/current", {withCredentials:true})
+    .get("http://localhost:8080/api/current", {withCredentials:true})
     .then((response)=>{
         console.log("데이터: ", response);
         if(response.status == 200){

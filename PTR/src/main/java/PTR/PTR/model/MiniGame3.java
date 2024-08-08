@@ -13,19 +13,18 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Entity
-@Table(name="training")
-public class Training {
+@Table(name="miniGame3")
+public class MiniGame3 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
-    @Column(name = "status")
-    private Status status;
+    @Column
+    private int score;
+    @Column
+    private int highScore;
 }

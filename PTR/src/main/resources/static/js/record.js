@@ -111,7 +111,7 @@ function createChartDate(){
   
   console.log(date)
   axios
-  .post("http://localhost:8080/findCalenderMonth", {date:date, user})
+  .post("http://localhost:8080/api/findCalenderMonth", {date:date, user})
   .then((response)=>{
     console.log("이번달 캘린더 정보: ", response.data)
     createChartWeight(response.data)
@@ -354,13 +354,13 @@ function createChartWeight(calendar){
   // async function fetchData(year, month) {
   //   try {
   //     const [dietResponse, exerciseResponse] = await Promise.all([
-  //       axios.get(`http://localhost:8080/dietData`, {
+  //       axios.get(`http://localhost:8080/api/dietData`, {
   //         params: {
   //           year: year,
   //           month: month,
   //         },
   //       }),
-  //       axios.get(`http://localhost:8080/exerciseData`, {
+  //       axios.get(`http://localhost:8080/api/exerciseData`, {
   //         params: {
   //           year: year,
   //           month: month,

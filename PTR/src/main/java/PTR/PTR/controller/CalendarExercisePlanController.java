@@ -18,27 +18,27 @@ public class CalendarExercisePlanController {
         this.calendarExercisePlanService = calendarExercisePlanService;
     }
 
-    @PostMapping("/calendarExercisePlan")
+    @PostMapping("/api/calendarExercisePlan")
     public CalendarExercisePlan saveCalendarExercisePlan(@RequestBody CalendarExercisePlan calendarExercisePlan){
         return calendarExercisePlanService.saveCalendarExercisePlan(calendarExercisePlan);
     }
 
-    @GetMapping("/calendarExercisePlan")
+    @GetMapping("/api/calendarExercisePlan")
     public Optional<CalendarExercisePlan> getCalendarExercisePlan(@RequestBody CalendarExercisePlan calendarExercisePlan){
         return calendarExercisePlanService.getCalendarExercisePlan(calendarExercisePlan);
     }
 
-    @DeleteMapping("/calendarExercisePlan")
+    @DeleteMapping("/api/calendarExercisePlan")
     public void deleteCalendarExercisePlan(@RequestBody CalendarExercisePlan calendarExercisePlan){
         calendarExercisePlanService.deleteCalendarExercisePlan(calendarExercisePlan);
     }
 
-    @PutMapping("/calendarExercisePlan")
+    @PutMapping("/api/calendarExercisePlan")
     public CalendarExercisePlan updateCalendarExercisePlan(@RequestBody CalendarExercisePlan calendarExercisePlan){
         return calendarExercisePlanService.updateCalendarExercisePlan(calendarExercisePlan);
     }
 
-    @PostMapping("/findCalendarExercisePlanByCalendar")
+    @PostMapping("/api/findCalendarExercisePlanByCalendar")
     public ResponseEntity<CalendarExercisePlan> findCalendarExercisePlanByCalendar(@RequestBody Calendar calendar){
         return new ResponseEntity<>(calendarExercisePlanService.findCalendarExercisePlanByCalendar(calendar), HttpStatus.OK);
     }

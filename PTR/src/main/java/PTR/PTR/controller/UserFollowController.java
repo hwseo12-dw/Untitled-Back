@@ -15,30 +15,30 @@ public class UserFollowController {
         this.userFollowService = userFollowService;
     }
 
-    @PostMapping("/userFollow")
+    @PostMapping("/api/userFollow")
     public UserFollow saveUserFollow(@RequestBody UserFollow userFollow){
         return userFollowService.saveUserFollow(userFollow);
     }
 
-    @DeleteMapping("/userFollow")
+    @DeleteMapping("/api/userFollow")
     public void deleteUserFollow(@RequestBody UserFollow userFollow){
         userFollowService.deleteUserFollow(userFollow);
     }
 
-    @PostMapping("/userFollow/user")
+    @PostMapping("/api/userFollow/user")
     public List<UserFollow> getUserFollowByUser(@RequestBody User user){
         return userFollowService.getUserFollowByUser(user);
     }
-    @PostMapping("/numberOfFollowByUser")
+    @PostMapping("/api/numberOfFollowByUser")
     public int getNumberOfFollowByUser(@RequestBody User user){
         return userFollowService.getNumberOfFollowByUser(user);
     }
 
-    @PostMapping("/userFollow/user2")
+    @PostMapping("/api/userFollow/user2")
     public List<UserFollow> getUserFollowByUser2(@RequestBody User user){
         return userFollowService.getUserFollowByUser2(user);
     }
-    @PostMapping("/numberOfFollowByUser2")
+    @PostMapping("/api/numberOfFollowByUser2")
     public int getNumberOfFollowByUser2(@RequestBody User user){
         return userFollowService.getNumberOfFollowByUser2(user);
     }

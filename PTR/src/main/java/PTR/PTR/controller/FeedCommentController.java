@@ -15,32 +15,32 @@ public class FeedCommentController {
         this.feedCommentService = feedCommentService;
     }
 
-    @PostMapping("/feedComment")
+    @PostMapping("/api/feedComment")
     public String saveFeedComment(@RequestBody FeedComment feedComment){
         feedCommentService.saveFeedComment(feedComment);
         return "정상";
     }
-    @PostMapping("/getFeedComment")
+    @PostMapping("/api/getFeedComment")
     public List<FeedComment> getFeedComment(@RequestBody Feed feed){
         return feedCommentService.getFeedComment(feed);
     }
 
 
-    @PostMapping("/deleteFeedComment")
+    @PostMapping("/api/deleteFeedComment")
     public void deleteFeedComment(@RequestBody FeedComment feedComment){
         feedCommentService.deleteFeedComment(feedComment);
     }
-    @PutMapping("/feedComment")
+    @PutMapping("/api/feedComment")
     public FeedComment updateFeedComment(@RequestBody FeedComment feedComment){
         return feedCommentService.updateFeedComment(feedComment);
     }
 
-    @PostMapping("/numberOfFeedComment")
+    @PostMapping("/api/numberOfFeedComment")
     public int getNumberOfFeedComment(@RequestBody Feed feed){
         return feedCommentService.getNumberOfFeedComment(feed);
     }
 
-    @PostMapping("/deleteFeedCommentByFeed")
+    @PostMapping("/api/deleteFeedCommentByFeed")
     public void deleteFeedCommentByFeed(@RequestBody Feed feed){
         feedCommentService.deleteFeedCommentByFeed(feed);
     }

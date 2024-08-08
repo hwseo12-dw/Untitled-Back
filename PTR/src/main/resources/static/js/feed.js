@@ -82,7 +82,7 @@ document.querySelector(".content_feedcomment_closeBtn").addEventListener("click"
 let text = "";
 //피드 홈
 axios
-.get("http://localhost:8080/feed", {withCredentials: true})
+.get("http://localhost:8080/api/feed", {withCredentials: true})
 .then((response) => {
     console.log("데이터: ", response.data);
     displayFeed(response.data);
@@ -105,7 +105,7 @@ document.querySelector(".content_createFeed_createBtn").addEventListener("click"
         text:text
     }
     axios
-    .post("http://localhost:8080/feed", data, {withCredentials: true})
+    .post("http://localhost:8080/api/feed", data, {withCredentials: true})
     .then((response) => {
         console.log("서버 응답: ", response.data);
         alert("성공적으로 전송되었습니다.");
@@ -120,7 +120,7 @@ document.querySelector(".content_createFeed_createBtn").addEventListener("click"
 
 // 스크랩
 axios
-.post("http://localhost:8080/feedScrap/user", {userId: user.userId}, {withCredentials: true})
+.post("http://localhost:8080/api/feedScrap/user", {userId: user.userId}, {withCredentials: true})
 .then((response) => {
     console.log("데이터: ", response.data);
     displayScrap(response.data);
@@ -136,7 +136,7 @@ const content_myFeed_profile_img = document.getElementById("content_myFeed_profi
 const content_myFeed_profile_id = document.querySelector(".content_myFeed_profile_id");
 const content_myFeed_profile_text = document.querySelector(".content_myFeed_profile_text");
 axios
-.post("http://localhost:8080/sendUser", {userId: user.userId}, {withCredentials: true})
+.post("http://localhost:8080/api/sendUser", {userId: user.userId}, {withCredentials: true})
 .then((response) => {
     console.log("데이터: ", response.data);
     
@@ -152,7 +152,7 @@ axios
 
 const content_myFeed_profile_box_numberOfFeed = document.querySelector(".content_myFeed_profile_box_numberOfFeed");
 axios
-.post("http://localhost:8080/numberOfFeed", {userId: user.userId}, {withCredentials:true})
+.post("http://localhost:8080/api/numberOfFeed", {userId: user.userId}, {withCredentials:true})
 .then((response)=>{
     console.log("데이터: ", response.data);
     content_myFeed_profile_box_numberOfFeed.textContent = response.data;
@@ -164,7 +164,7 @@ axios
 
 const content_myFeed_profile_box_numberOfFollower = document.querySelector(".content_myFeed_profile_box_numberOfFollower");
 axios
-.post("http://localhost:8080/numberOfFollowByUser", {userId: user.userId}, {withCredentials:true})
+.post("http://localhost:8080/api/numberOfFollowByUser", {userId: user.userId}, {withCredentials:true})
 .then((response)=>{
     console.log("데이터111: ",response.data);
     content_myFeed_profile_box_numberOfFollower.textContent = response.data;
@@ -175,7 +175,7 @@ axios
 
 const content_myFeed_profile_box_numberOfFollowing = document.querySelector(".content_myFeed_profile_box_numberOfFollowing");
 axios
-.post("http://localhost:8080/numberOfFollowByUser2", {userId: user.userId}, {withCredentials:true})
+.post("http://localhost:8080/api/numberOfFollowByUser2", {userId: user.userId}, {withCredentials:true})
 .then((response)=>{
     console.log("데이터: ", response.data);
     content_myFeed_profile_box_numberOfFollowing.textContent = response.data;
@@ -185,7 +185,7 @@ axios
 })
 
 axios
-.post("http://localhost:8080/feed/id", {userId: user.userId}, {withCredentials: true})
+.post("http://localhost:8080/api/feed/id", {userId: user.userId}, {withCredentials: true})
 .then((response) => {
     console.log("데이터: ", response.data);
     displayMyFeed(response.data);
@@ -201,7 +201,7 @@ document.querySelector(".content_myFeed_profile_box_numberOfFollower").addEventL
     document.querySelector(".content_follower").classList.remove("hiden");
 
     axios
-    .post("http://localhost:8080/userFollow/user", {userId: user.userId}, {withCredentials: true})
+    .post("http://localhost:8080/api/userFollow/user", {userId: user.userId}, {withCredentials: true})
     .then((response) => {
         console.log("데이터: ", response.data);
         displayFollower(response.data);
@@ -219,7 +219,7 @@ document.querySelector(".content_myFeed_profile_box_numberOfFollowing").addEvent
 
 
     axios
-    .post("http://localhost:8080/userFollow/user2", {userId: user.userId}, {withCredentials: true})
+    .post("http://localhost:8080/api/userFollow/user2", {userId: user.userId}, {withCredentials: true})
     .then((response) => {
         console.log("데이터: ", response.data);
         displayFollowing(response.data);
@@ -281,7 +281,7 @@ function displayFeed(data){
         
        //태그 속성
         axios
-        .post("http://localhost:8080/numberOfFeedLike", {id:feed.id}, {withCredentials: true})
+        .post("http://localhost:8080/api/numberOfFeedLike", {id:feed.id}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             content_feedfooter_like.textContent = response.data;
@@ -291,7 +291,7 @@ function displayFeed(data){
             console.log("에러발생: ", error);
         })
         axios
-        .post("http://localhost:8080/numberOfFeedComment", {id:feed.id}, {withCredentials: true})
+        .post("http://localhost:8080/api/numberOfFeedComment", {id:feed.id}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             content_feedfooter_comment.textContent = response.data;
@@ -303,7 +303,7 @@ function displayFeed(data){
 
         //좋아요버튼
         axios
-        .post("http://localhost:8080/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .post("http://localhost:8080/api/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             if(response.data == true){
@@ -311,7 +311,7 @@ function displayFeed(data){
                 //조아요 취소
                 content_feedfooter_likeBtn.addEventListener("click", ()=>{
                     axios
-                    .delete("http://localhost:8080/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .delete("http://localhost:8080/api/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -326,7 +326,7 @@ function displayFeed(data){
                 content_feedfooter_likeBtn.addEventListener("click", ()=>{
                     checkLogin(user);
                     axios
-                    .post("http://localhost:8080/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -342,7 +342,7 @@ function displayFeed(data){
         })
         //스크랩버튼
         axios
-        .post("http://localhost:8080/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .post("http://localhost:8080/api/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             if(response.data == true){
@@ -350,7 +350,7 @@ function displayFeed(data){
                 //스크랩취소
                 content_feedfooter_scrapBtn.addEventListener("click",()=>{
                     axios
-                    .delete("http://localhost:8080/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .delete("http://localhost:8080/api/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -364,7 +364,7 @@ function displayFeed(data){
                 content_feedfooter_scrapBtn.addEventListener("click",()=>{
                     checkLogin(user);
                     axios
-                    .post("http://localhost:8080/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -390,7 +390,7 @@ function displayFeed(data){
         content_feedfooter_commentBtn.addEventListener("click",()=>{
             document.querySelector(".content_feedcommentbox").classList.remove("hiden");
             axios
-            .post("http://localhost:8080/getFeedComment", {id:feed.id}, {withCredentials:true})
+            .post("http://localhost:8080/api/getFeedComment", {id:feed.id}, {withCredentials:true})
             .then((response)=>{
                 console.log("데이터: ", response.data);
                 displayComments(response.data);
@@ -446,7 +446,7 @@ function displayFeed(data){
                     
                     //댓글 좋아요 개수
                     axios
-                    .post("http://localhost:8080/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
+                    .post("http://localhost:8080/api/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         content_feedcomment_like.textContent = response.data;
@@ -458,7 +458,7 @@ function displayFeed(data){
 
                      //좋아요버튼
                     axios
-                    .post("http://localhost:8080/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         if(response.data == true){
@@ -466,7 +466,7 @@ function displayFeed(data){
                             //조아요 취소
                             content_feedcomment_likeBtn.addEventListener("click", ()=>{
                                 axios
-                                .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
+                                .delete("http://localhost:8080/api/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -483,7 +483,7 @@ function displayFeed(data){
                             content_feedcomment_likeBtn.addEventListener("click", ()=>{
                                 checkLogin(user);
                                 axios
-                                .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                                .post("http://localhost:8080/api/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -520,11 +520,11 @@ function displayFeed(data){
                         //댓글 삭제버튼
                         content_feedcomment_deleteComment.addEventListener("click",()=>{
                             axios
-                            .post("http://localhost:8080/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
+                            .post("http://localhost:8080/api/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
                             .then((response)=> {
                                 console.log("데이터: ", response.data);
                                 axios
-                                .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
+                                .post("http://localhost:8080/api/deleteFeedComment", {id:comment.id}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -557,7 +557,7 @@ function displayFeed(data){
                         }
                     }
                     axios
-                    .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedComment", data1, {withCredentials: true})
                     .then((response) => {
                         console.log("서버 응답: ", response.data);
                     })
@@ -603,7 +603,7 @@ function displayFeed(data){
                     const content_updateFeed_myId = document.querySelector(".content_updateFeed_myId");
 
                     axios
-                    .post("http://localhost:8080/sendUser", {userId: user.userId}, {withCredentials: true})
+                    .post("http://localhost:8080/api/sendUser", {userId: user.userId}, {withCredentials: true})
                     .then((response) => {
                         console.log("데이터: ", response.data);
                         content_updateFeed_userPhoto.src = response.data.profileImg;
@@ -629,7 +629,7 @@ function displayFeed(data){
                             image:feed.image
                         }
                         axios
-                        .put("http://localhost:8080/feed", data, {withCredentials: true})
+                        .put("http://localhost:8080/api/feed", data, {withCredentials: true})
                         .then((response) => {
                             console.log("서버 응답: ", response.data);
                             alert("성공적으로 전송되었습니다.");
@@ -650,23 +650,23 @@ function displayFeed(data){
                 content_feedMore_delete.addEventListener("click", () => {
 
                     axios
-                    .post("http://localhost:8080/deleteFeedScrapByFeed", {id: feed.id}, {withCredentials:true})
+                    .post("http://localhost:8080/api/deleteFeedScrapByFeed", {id: feed.id}, {withCredentials:true})
                     .then((response) => {
                         console.log("데이터: ", response.data);
                         axios
-                        .post("http://localhost:8080/deleteFeedLikeByFeed", {id: feed.id}, {withCredentials:true})
+                        .post("http://localhost:8080/api/deleteFeedLikeByFeed", {id: feed.id}, {withCredentials:true})
                         .then((response)=>{
                             console.log("데이터: ", response.data);
                             axios
-                            .post("http://localhost:8080/deleteFeedCommentLikeByFeed", {id: feed.id}, {withCredentials:true})
+                            .post("http://localhost:8080/api/deleteFeedCommentLikeByFeed", {id: feed.id}, {withCredentials:true})
                             .then((response)=>{
                                 console.log("데이터: ",response.data);
                                 axios
-                                .post("http://localhost:8080/deleteFeedCommentByFeed", {id: feed.id}, {withCredentials:true})
+                                .post("http://localhost:8080/api/deleteFeedCommentByFeed", {id: feed.id}, {withCredentials:true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     axios
-                                    .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
+                                    .post("http://localhost:8080/api/deleteFeed", { id: feed.id }, { withCredentials: true })
                                     .then((response) => {
                                         console.log("데이터: ", response.data);
                                         location.reload();
@@ -705,7 +705,7 @@ function displayFeed(data){
 
                     
                     axios
-                    .post("http://localhost:8080/getFeedLike", {id:feed.id}, {withCredentials:true})
+                    .post("http://localhost:8080/api/getFeedLike", {id:feed.id}, {withCredentials:true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         const likebody = document.querySelector(".content_feedMore_like")
@@ -833,7 +833,7 @@ function displayScrap(data){
         
        //태그 속성
         axios
-        .post("http://localhost:8080/numberOfFeedLike", {id:feed.id}, {withCredentials: true})
+        .post("http://localhost:8080/api/numberOfFeedLike", {id:feed.id}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             content_feedfooter_like.textContent = response.data;
@@ -843,7 +843,7 @@ function displayScrap(data){
             console.log("에러발생: ", error);
         })
         axios
-        .post("http://localhost:8080/numberOfFeedComment", {id:feed.id}, {withCredentials: true})
+        .post("http://localhost:8080/api/numberOfFeedComment", {id:feed.id}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             content_feedfooter_comment.textContent = response.data;
@@ -855,7 +855,7 @@ function displayScrap(data){
 
         //좋아요버튼
         axios
-        .post("http://localhost:8080/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .post("http://localhost:8080/api/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             if(response.data == true){
@@ -863,7 +863,7 @@ function displayScrap(data){
                 //조아요 취소
                 content_feedfooter_likeBtn.addEventListener("click", ()=>{
                     axios
-                    .delete("http://localhost:8080/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .delete("http://localhost:8080/api/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -877,7 +877,7 @@ function displayScrap(data){
                 //조아요
                 content_feedfooter_likeBtn.addEventListener("click", ()=>{
                     axios
-                    .post("http://localhost:8080/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -893,7 +893,7 @@ function displayScrap(data){
         })
         //스크랩버튼
         axios
-        .post("http://localhost:8080/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .post("http://localhost:8080/api/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             if(response.data == true){
@@ -901,7 +901,7 @@ function displayScrap(data){
                 //스크랩취소
                 content_feedfooter_scrapBtn.addEventListener("click",()=>{
                     axios
-                    .delete("http://localhost:8080/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .delete("http://localhost:8080/api/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -914,7 +914,7 @@ function displayScrap(data){
                 content_feedfooter_scrapBtn.src = "/img/bookmark.png";
                 content_feedfooter_scrapBtn.addEventListener("click",()=>{
                     axios
-                    .post("http://localhost:8080/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -940,7 +940,7 @@ function displayScrap(data){
         content_feedfooter_commentBtn.addEventListener("click",()=>{
             document.querySelector(".content_feedcommentbox").classList.remove("hiden");
             axios
-            .post("http://localhost:8080/getFeedComment", {id:feed.id}, {withCredentials:true})
+            .post("http://localhost:8080/api/getFeedComment", {id:feed.id}, {withCredentials:true})
             .then((response)=>{
                 console.log("데이터: ", response.data);
                 displayComments(response.data);
@@ -996,7 +996,7 @@ function displayScrap(data){
                     
                     //댓글 좋아요 개수
                     axios
-                    .post("http://localhost:8080/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
+                    .post("http://localhost:8080/api/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         content_feedcomment_like.textContent = response.data;
@@ -1008,7 +1008,7 @@ function displayScrap(data){
 
                      //좋아요버튼
                     axios
-                    .post("http://localhost:8080/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         if(response.data == true){
@@ -1016,7 +1016,7 @@ function displayScrap(data){
                             //조아요 취소
                             content_feedcomment_likeBtn.addEventListener("click", ()=>{
                                 axios
-                                .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
+                                .delete("http://localhost:8080/api/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -1030,7 +1030,7 @@ function displayScrap(data){
                             //조아요
                             content_feedcomment_likeBtn.addEventListener("click", ()=>{
                                 axios
-                                .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                                .post("http://localhost:8080/api/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -1066,11 +1066,11 @@ function displayScrap(data){
                         //댓글 삭제버튼
                         content_feedcomment_deleteComment.addEventListener("click",()=>{
                             axios
-                            .post("http://localhost:8080/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
+                            .post("http://localhost:8080/api/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
                             .then((response)=> {
                                 console.log("데이터: ", response.data);
                                 axios
-                                .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
+                                .post("http://localhost:8080/api/deleteFeedComment", {id:comment.id}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -1102,7 +1102,7 @@ function displayScrap(data){
                         }
                     }
                     axios
-                    .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedComment", data1, {withCredentials: true})
                     .then((response) => {
                         console.log("서버 응답: ", response.data);
                     })
@@ -1147,7 +1147,7 @@ function displayScrap(data){
                     const content_updateFeed_myId = document.querySelector(".content_updateFeed_myId");
 
                     axios
-                    .post("http://localhost:8080/sendUser", {userId: user.userId}, {withCredentials: true})
+                    .post("http://localhost:8080/api/sendUser", {userId: user.userId}, {withCredentials: true})
                     .then((response) => {
                         console.log("데이터: ", response.data);
                         content_updateFeed_userPhoto.src = response.data.profileImg;
@@ -1173,7 +1173,7 @@ function displayScrap(data){
                             image:feed.image
                         }
                         axios
-                        .put("http://localhost:8080/feed", data, {withCredentials: true})
+                        .put("http://localhost:8080/api/feed", data, {withCredentials: true})
                         .then((response) => {
                             console.log("서버 응답: ", response.data);
                             alert("성공적으로 전송되었습니다.");
@@ -1192,7 +1192,7 @@ function displayScrap(data){
                 const content_feedMore_delete = document.querySelector(".content_feedMore_delete");
                 content_feedMore_delete.addEventListener("click", () => {
                     axios
-                    .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
+                    .post("http://localhost:8080/api/deleteFeed", { id: feed.id }, { withCredentials: true })
                     .then((response) => {
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -1212,7 +1212,7 @@ function displayScrap(data){
 
                     
                     axios
-                    .post("http://localhost:8080/getFeedLike", {id:feed.id}, {withCredentials:true})
+                    .post("http://localhost:8080/api/getFeedLike", {id:feed.id}, {withCredentials:true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         const likebody = document.querySelector(".content_feedMore_like")
@@ -1351,7 +1351,7 @@ function displayMyFeed(data){
         
        //태그 속성
         axios
-        .post("http://localhost:8080/numberOfFeedLike", {id:feed.id}, {withCredentials: true})
+        .post("http://localhost:8080/api/numberOfFeedLike", {id:feed.id}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             content_feedfooter_like.textContent = response.data;
@@ -1361,7 +1361,7 @@ function displayMyFeed(data){
             console.log("에러발생: ", error);
         })
         axios
-        .post("http://localhost:8080/numberOfFeedComment", {id:feed.id}, {withCredentials: true})
+        .post("http://localhost:8080/api/numberOfFeedComment", {id:feed.id}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             content_feedfooter_comment.textContent = response.data;
@@ -1373,7 +1373,7 @@ function displayMyFeed(data){
     
         //좋아요버튼
         axios
-        .post("http://localhost:8080/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .post("http://localhost:8080/api/checkFeedLikeClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             if(response.data == true){
@@ -1381,7 +1381,7 @@ function displayMyFeed(data){
                 //조아요 취소
                 content_feedfooter_likeBtn.addEventListener("click", ()=>{
                     axios
-                    .delete("http://localhost:8080/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .delete("http://localhost:8080/api/feedLike", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -1395,7 +1395,7 @@ function displayMyFeed(data){
                 //조아요
                 content_feedfooter_likeBtn.addEventListener("click", ()=>{
                     axios
-                    .post("http://localhost:8080/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedLike", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -1411,7 +1411,7 @@ function displayMyFeed(data){
         })
         //스크랩버튼
         axios
-        .post("http://localhost:8080/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+        .post("http://localhost:8080/api/checkFeedScrapClick", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
         .then((response)=>{
             console.log("데이터: ", response.data);
             if(response.data == true){
@@ -1419,7 +1419,7 @@ function displayMyFeed(data){
                 //스크랩취소
                 content_feedfooter_scrapBtn.addEventListener("click",()=>{
                     axios
-                    .delete("http://localhost:8080/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
+                    .delete("http://localhost:8080/api/feedScrap", {data:{feed:{id:feed.id },user:{userId:user.userId }}, withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -1432,7 +1432,7 @@ function displayMyFeed(data){
                 content_feedfooter_scrapBtn.src = "/img/bookmark.png";
                 content_feedfooter_scrapBtn.addEventListener("click",()=>{
                     axios
-                    .post("http://localhost:8080/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedScrap", {feed:{id:feed.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -1458,7 +1458,7 @@ function displayMyFeed(data){
         content_feedfooter_commentBtn.addEventListener("click",()=>{
             document.querySelector(".content_feedcommentbox").classList.remove("hiden");
             axios
-            .post("http://localhost:8080/getFeedComment", {id:feed.id}, {withCredentials:true})
+            .post("http://localhost:8080/api/getFeedComment", {id:feed.id}, {withCredentials:true})
             .then((response)=>{
                 console.log("데이터: ", response.data);
                 displayComments(response.data);
@@ -1515,7 +1515,7 @@ function displayMyFeed(data){
                     
                     //댓글 좋아요 개수
                     axios
-                    .post("http://localhost:8080/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
+                    .post("http://localhost:8080/api/numberOfFeedCommentLike", {id:comment.id}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         content_feedcomment_like.textContent = response.data;
@@ -1527,7 +1527,7 @@ function displayMyFeed(data){
 
                      //좋아요버튼
                     axios
-                    .post("http://localhost:8080/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                    .post("http://localhost:8080/api/checkFeedCommentLikeClick", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         if(response.data == true){
@@ -1535,7 +1535,7 @@ function displayMyFeed(data){
                             //조아요 취소
                             content_feedcomment_likeBtn.addEventListener("click", ()=>{
                                 axios
-                                .delete("http://localhost:8080/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
+                                .delete("http://localhost:8080/api/feedCommentLike", {data:{feedComment:{id:comment.id },user:{userId:user.userId }}, withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -1549,7 +1549,7 @@ function displayMyFeed(data){
                             //조아요
                             content_feedcomment_likeBtn.addEventListener("click", ()=>{
                                 axios
-                                .post("http://localhost:8080/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
+                                .post("http://localhost:8080/api/feedCommentLike", {feedComment:{id:comment.id}, user:{userId: user.userId}}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -1585,11 +1585,11 @@ function displayMyFeed(data){
                         //댓글 삭제버튼
                         content_feedcomment_deleteComment.addEventListener("click",()=>{
                             axios
-                            .post("http://localhost:8080/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
+                            .post("http://localhost:8080/api/feedCommentLikeByFeedComment", {id:comment.id}, {withCredentials:true})
                             .then((response)=> {
                                 console.log("데이터: ", response.data);
                                 axios
-                                .post("http://localhost:8080/deleteFeedComment", {id:comment.id}, {withCredentials: true})
+                                .post("http://localhost:8080/api/deleteFeedComment", {id:comment.id}, {withCredentials: true})
                                 .then((response)=>{
                                     console.log("데이터: ", response.data);
                                     location.reload();
@@ -1621,7 +1621,7 @@ function displayMyFeed(data){
                         }
                     }
                     axios
-                    .post("http://localhost:8080/feedComment", data1, {withCredentials: true})
+                    .post("http://localhost:8080/api/feedComment", data1, {withCredentials: true})
                     .then((response) => {
                         console.log("서버 응답: ", response.data);
                     })
@@ -1666,7 +1666,7 @@ function displayMyFeed(data){
                     const content_updateFeed_myId = document.querySelector(".content_updateFeed_myId");
 
                     axios
-                    .post("http://localhost:8080/sendUser", {userId: user.userId}, {withCredentials: true})
+                    .post("http://localhost:8080/api/sendUser", {userId: user.userId}, {withCredentials: true})
                     .then((response) => {
                         console.log("데이터: ", response.data);
                         content_updateFeed_userPhoto.src = response.data.profileImg;
@@ -1692,7 +1692,7 @@ function displayMyFeed(data){
                             image:feed.image
                         }
                         axios
-                        .put("http://localhost:8080/feed", data, {withCredentials: true})
+                        .put("http://localhost:8080/api/feed", data, {withCredentials: true})
                         .then((response) => {
                             console.log("서버 응답: ", response.data);
                             alert("성공적으로 전송되었습니다.");
@@ -1711,7 +1711,7 @@ function displayMyFeed(data){
                 const content_feedMore_delete = document.querySelector(".content_feedMore_delete");
                 content_feedMore_delete.addEventListener("click", () => {
                     axios
-                    .post("http://localhost:8080/deleteFeed", { id: feed.id }, { withCredentials: true })
+                    .post("http://localhost:8080/api/deleteFeed", { id: feed.id }, { withCredentials: true })
                     .then((response) => {
                         console.log("데이터: ", response.data);
                         location.reload();
@@ -1731,7 +1731,7 @@ function displayMyFeed(data){
 
                     
                     axios
-                    .post("http://localhost:8080/getFeedLike", {id:feed.id}, {withCredentials:true})
+                    .post("http://localhost:8080/api/getFeedLike", {id:feed.id}, {withCredentials:true})
                     .then((response)=>{
                         console.log("데이터: ", response.data);
                         const likebody = document.querySelector(".content_feedMore_like")
@@ -1897,7 +1897,7 @@ let user = ""
 
 function sessionCurrent(){
     axios
-    .get("http://localhost:8080/current", {withCredentials:true})
+    .get("http://localhost:8080/api/current", {withCredentials:true})
     .then((response)=>{
         console.log("데이터: ", response);
         if(response.status == 200){

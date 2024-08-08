@@ -23,7 +23,7 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @PostMapping("grantTeacher")
+    @PostMapping("/api/grantTeacher")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<String> grantTeacher(@RequestBody User user){
         return new ResponseEntity<>(adminService.grantTeacher(user),
@@ -31,22 +31,22 @@ public class AdminController {
 
     }
 
-    @GetMapping("allUser")
+    @GetMapping("/api/allUser")
     public ResponseEntity<List<User>> allUser(){
         return new ResponseEntity<>(adminService.allUser(),HttpStatus.OK);
     }
 
-    @GetMapping("allAdmin")
+    @GetMapping("/api/allAdmin")
     public ResponseEntity<List<Admin>> allAdmin(){
         return new ResponseEntity<>(adminService.allAdmin(),HttpStatus.OK);
     }
 
-    @GetMapping("allTeacher")
+    @GetMapping("/api/allTeacher")
     public ResponseEntity<List<Teacher>> allTeacher(){
         return new ResponseEntity<>(adminService.allTeacher(),HttpStatus.OK);
     }
 
-    @GetMapping("onlyUsers")
+    @GetMapping("/api/onlyUsers")
     public ResponseEntity<List<User>> onlyUsers(){
         return new ResponseEntity<>(adminService.onlyUsers(),HttpStatus.OK);
     }

@@ -1,7 +1,7 @@
 function sessionCurrent(){
     const checkLogin = document.querySelector(".checkLogin");
     axios
-    .get("http://localhost:8080/current", {withCredentials:true})
+    .get("http://localhost:8080/api/current", {withCredentials:true})
     .then((response)=>{
         console.log("데이터: ", response);
         if(response.status == 200){

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("a");
 
     axios
-      .post("http://localhost:8080/signup", signupData)
+      .post("http://localhost:8080/api/signup", signupData)
       .then((response) => {
         console.log("데이터: ", response.data);
         if (response.status === 201) {

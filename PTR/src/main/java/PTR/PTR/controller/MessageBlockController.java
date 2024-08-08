@@ -20,12 +20,12 @@ public class MessageBlockController {
         this.messageBlockService = messageBlockService;
     }
     // 차단
-    @PostMapping("messageBlock")
+    @PostMapping("/api/messageBlock")
     public ResponseEntity<MessageBlock> messageBlock(@RequestBody MessageBlock messageBlock){
         return new ResponseEntity<>(messageBlockService.messageBlock(messageBlock), HttpStatus.OK);
     }
     // 내가 차단한 유저 목록
-    @PostMapping("myMessageBlock")
+    @PostMapping("/api/myMessageBlock")
     public ResponseEntity<List<MessageBlock>> myMessageBlock(@RequestBody User user){
         return new ResponseEntity<>(messageBlockService.myMessageBlock(user), HttpStatus.OK);
     }

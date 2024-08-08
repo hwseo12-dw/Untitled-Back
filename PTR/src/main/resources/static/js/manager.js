@@ -1,5 +1,5 @@
 axios
-  .get("http://localhost:8080/todayLectureUser")
+  .get("http://localhost:8080/api/todayLectureUser")
   .then((response) => {
     console.log("데이터: ", response.data);
     create_today_buy(response.data);
@@ -20,7 +20,7 @@ function create_today_buy(data) {
 
 let todayLectures = [];
 axios
-  .get("http://localhost:8080/todayLecture")
+  .get("http://localhost:8080/api/todayLecture")
   .then((response) => {
     console.log("데이터: ", response.data);
     create_today_upload(response.data);
@@ -42,7 +42,7 @@ function create_today_upload(data) {
 }
 
 axios
-  .get("http://localhost:8080/AllLectureUser")
+  .get("http://localhost:8080/api/AllLectureUser")
   .then((response) => {
     console.log("데이터: ", response.data);
     create_tatal_sales(response.data);
@@ -67,19 +67,19 @@ let allAdmin = [];
 let onlyUsers = [];
 
 axios
-  .get("http://localhost:8080/allUser")
+  .get("http://localhost:8080/api/allUser")
   .then((response) => {
     allUser = allUser.concat(response.data);
     axios
-      .get("http://localhost:8080/allTeacher")
+      .get("http://localhost:8080/api/allTeacher")
       .then((response) => {
         allTeacher = allTeacher.concat(response.data);
         axios
-          .get("http://localhost:8080/allAdmin")
+          .get("http://localhost:8080/api/allAdmin")
           .then((response) => {
             allAdmin = allAdmin.concat(response.data);
             axios
-              .get("http://localhost:8080/onlyUsers")
+              .get("http://localhost:8080/api/onlyUsers")
               .then((response) => {
                 onlyUsers = onlyUsers.concat(response.data);
                 create_tatal_user();
@@ -116,7 +116,7 @@ function create_tatal_user() {
 let allLecture = [];
 
 axios
-  .get("http://localhost:8080/findAllLecture")
+  .get("http://localhost:8080/api/findAllLecture")
   .then((response) => {
     console.log("데이터: ", response.data);
     allLecture = allLecture.concat(response.data);
@@ -132,7 +132,7 @@ function create_tatal_lectures(data) {
 }
 
 axios
-  .get("http://localhost:8080/findNotReply")
+  .get("http://localhost:8080/api/findNotReply")
   .then((response) => {
     console.log("데이터: ", response.data);
     create_new_Q(response.data);
@@ -191,7 +191,7 @@ function create_user_detail_user() {
     user_item_total.classList.add("user_item_lecture");
 
     axios
-      .post("http://localhost:8080/myBuyLecture", { userId: user.userId })
+      .post("http://localhost:8080/api/myBuyLecture", { userId: user.userId })
       .then((response) => {
         user_item_lecture.textContent =
           "영상 구매수: " + response.data.length + "개";
@@ -258,7 +258,7 @@ function create_user_detail_user_taacher() {
     user_item_cash.classList.add("user_item_cash");
 
     axios
-      .post("http://localhost:8080/teacherSubscription", { id: teacher.id })
+      .post("http://localhost:8080/api/teacherSubscription", { id: teacher.id })
       .then((response) => {
         user_item_cash.textContent = "구독자: " + response.data + "명";
       })
@@ -272,7 +272,7 @@ function create_user_detail_user_taacher() {
     user_item_total.classList.add("user_item_lecture");
 
     axios
-      .post("http://localhost:8080/findTeacherLecture", { id: teacher.id })
+      .post("http://localhost:8080/api/findTeacherLecture", { id: teacher.id })
       .then((response) => {
         user_item_lecture.textContent =
           "영상 업로드 갯수: " + response.data.length + "개";
@@ -282,7 +282,7 @@ function create_user_detail_user_taacher() {
       });
 
     axios
-      .post("http://localhost:8080/findLectureUserByTeacher", {
+      .post("http://localhost:8080/api/findLectureUserByTeacher", {
         id: teacher.id,
       })
       .then((response) => {
@@ -367,7 +367,7 @@ function showUserDetail(user, user_item) {
   const box2_div3 = document.createElement("div");
 
   axios
-    .post("http://localhost:8080/myBuyLecture", { userId: user.userId })
+    .post("http://localhost:8080/api/myBuyLecture", { userId: user.userId })
     .then((response) => {
       box2_div2.textContent = "영상 구매수: " + response.data.length + "개";
       let total_price = 0;
@@ -465,7 +465,7 @@ function showTeacherDetail(teacher, user_item) {
   const box2_div3 = document.createElement("div");
 
   axios
-    .post("http://localhost:8080/myBuyLecture", { userId: teacher.user.userId })
+    .post("http://localhost:8080/api/myBuyLecture", { userId: teacher.user.userId })
     .then((response) => {
       box2_div2.textContent = "영상 구매수: " + response.data.length + "개";
       let total_price = 0;
@@ -495,7 +495,7 @@ function showTeacherDetail(teacher, user_item) {
 
   const box4_div1 = document.createElement("div");
   axios
-    .post("http://localhost:8080/teacherSubscription", { id: teacher.id })
+    .post("http://localhost:8080/api/teacherSubscription", { id: teacher.id })
     .then((response) => {
       box4_div1.textContent = "구독자: " + response.data + "명";
     })
@@ -505,7 +505,7 @@ function showTeacherDetail(teacher, user_item) {
 
   const box4_div2 = document.createElement("div");
   axios
-    .post("http://localhost:8080/findTeacherLecture", { id: teacher.id })
+    .post("http://localhost:8080/api/findTeacherLecture", { id: teacher.id })
     .then((response) => {
       box4_div2.textContent =
         "영상 업로드 갯수: " + response.data.length + "개";
@@ -517,7 +517,7 @@ function showTeacherDetail(teacher, user_item) {
   const box4_div3 = document.createElement("div");
   const box4_div4 = document.createElement("div");
   axios
-    .post("http://localhost:8080/findLectureUserByTeacher", { id: teacher.id })
+    .post("http://localhost:8080/api/findLectureUserByTeacher", { id: teacher.id })
     .then((response) => {
       box4_div3.textContent = "판매건수: " + response.data.length + "건";
       let total_price = 0;
@@ -616,7 +616,7 @@ function create_lecture_detail_all() {
     user_item_total.classList.add("lecture_item_lecture");
 
     axios
-      .post("http://localhost:8080/buyNumber", { id: lecture.id })
+      .post("http://localhost:8080/api/buyNumber", { id: lecture.id })
       .then((response) => {
         user_item_lecture.textContent = "판매수: " + response.data + "개";
         user_item_total.textContent =
@@ -689,7 +689,7 @@ function create_lecture_detail_teacher() {
     user_item_total.classList.add("lecture_item_lecture");
 
     axios
-      .post("http://localhost:8080/buyNumber", { id: lecture.id })
+      .post("http://localhost:8080/api/buyNumber", { id: lecture.id })
       .then((response) => {
         user_item_lecture.textContent = "판매수: " + response.data + "개";
         user_item_total.textContent =
@@ -748,7 +748,7 @@ function create_lecture_detail_teacher() {
 //         user_item_cash.classList.add("lecture_item_cash");
 
 //         axios
-//         .post("http://localhost:8080/teacherSubscription", {id: teacher.id})
+//         .post("http://localhost:8080/api/teacherSubscription", {id: teacher.id})
 //         .then((response)=>{
 //             user_item_cash.textContent = "구독자: " + response.data + "명"
 //         })
@@ -762,7 +762,7 @@ function create_lecture_detail_teacher() {
 //         user_item_total.classList.add("lecture_item_lecture");
 
 //         axios
-//         .post("http://localhost:8080/findTeacherLecture", {id: teacher.id})
+//         .post("http://localhost:8080/api/findTeacherLecture", {id: teacher.id})
 //         .then((response)=>{
 //             user_item_lecture.textContent = "영상 업로드 갯수: " + response.data.length + "개"
 //         })
@@ -771,7 +771,7 @@ function create_lecture_detail_teacher() {
 //         })
 
 //         axios
-//         .post("http://localhost:8080/findLectureUserByTeacher", {id: teacher.id})
+//         .post("http://localhost:8080/api/findLectureUserByTeacher", {id: teacher.id})
 //         .then((response)=>{
 //             let total_price = 0
 //             response.data.forEach((lectureUser)=>{
@@ -851,7 +851,7 @@ function showLectureDetail(lecture, user_item) {
   const box2_div1 = document.createElement("div");
   categoryString = "카테고리: ";
   axios
-    .post("http://localhost:8080/findLectureCategory", { id: lecture.id })
+    .post("http://localhost:8080/api/findLectureCategory", { id: lecture.id })
     .then((response) => {
       lectureCategory = response.data;
       lectureCategory.forEach((lectureCategory, index) => {
@@ -872,7 +872,7 @@ function showLectureDetail(lecture, user_item) {
   const box2_div2 = document.createElement("div");
   const box2_div3 = document.createElement("div");
   axios
-    .post("http://localhost:8080/buyNumber", { id: lecture.id })
+    .post("http://localhost:8080/api/buyNumber", { id: lecture.id })
     .then((response) => {
       box2_div2.textContent = "판매수: " + response.data + "개";
       box2_div3.textContent =
@@ -896,7 +896,7 @@ function showLectureDetail(lecture, user_item) {
 
   // const box4_div1 = document.createElement("div");
   // axios
-  // .post("http://localhost:8080/teacherSubscription", {id: teacher.id})
+  // .post("http://localhost:8080/api/teacherSubscription", {id: teacher.id})
   // .then((response)=>{
   //     box4_div1.textContent = "구독자: " + response.data + "명"
   // })
@@ -906,7 +906,7 @@ function showLectureDetail(lecture, user_item) {
 
   // const box4_div2 = document.createElement("div");
   // axios
-  // .post("http://localhost:8080/findTeacherLecture", {id: teacher.id})
+  // .post("http://localhost:8080/api/findTeacherLecture", {id: teacher.id})
   // .then((response)=>{
   //     box4_div2.textContent = "영상 업로드 갯수: " + response.data.length + "개"
   // })
@@ -917,7 +917,7 @@ function showLectureDetail(lecture, user_item) {
   // const box4_div3 = document.createElement("div");
   // const box4_div4 = document.createElement("div");
   // axios
-  // .post("http://localhost:8080/findLectureUserByTeacher", {id: teacher.id})
+  // .post("http://localhost:8080/api/findLectureUserByTeacher", {id: teacher.id})
   // .then((response)=>{
   //     box4_div3.textContent = "판매건수: " + response.data.length + "건"
   //     let total_price = 0
@@ -1009,7 +1009,7 @@ document.querySelectorAll(".lecture_item").forEach((item) => {
 //     const box2_div3 = document.createElement("div");
 
 //     axios
-//     .post("http://localhost:8080/myBuyLecture", {userId: teacher.user.userId})
+//     .post("http://localhost:8080/api/myBuyLecture", {userId: teacher.user.userId})
 //     .then((response)=>{
 //         box2_div2.textContent = "영상 구매수: " + response.data.length + "개"
 //         let total_price = 0;
@@ -1039,7 +1039,7 @@ document.querySelectorAll(".lecture_item").forEach((item) => {
 
 //     const box4_div1 = document.createElement("div");
 //     axios
-//     .post("http://localhost:8080/teacherSubscription", {id: teacher.id})
+//     .post("http://localhost:8080/api/teacherSubscription", {id: teacher.id})
 //     .then((response)=>{
 //         box4_div1.textContent = "구독자: " + response.data + "명"
 //     })
@@ -1049,7 +1049,7 @@ document.querySelectorAll(".lecture_item").forEach((item) => {
 
 //     const box4_div2 = document.createElement("div");
 //     axios
-//     .post("http://localhost:8080/findTeacherLecture", {id: teacher.id})
+//     .post("http://localhost:8080/api/findTeacherLecture", {id: teacher.id})
 //     .then((response)=>{
 //         box4_div2.textContent = "영상 업로드 갯수: " + response.data.length + "개"
 //     })
@@ -1060,7 +1060,7 @@ document.querySelectorAll(".lecture_item").forEach((item) => {
 //     const box4_div3 = document.createElement("div");
 //     const box4_div4 = document.createElement("div");
 //     axios
-//     .post("http://localhost:8080/findLectureUserByTeacher", {id: teacher.id})
+//     .post("http://localhost:8080/api/findLectureUserByTeacher", {id: teacher.id})
 //     .then((response)=>{
 //         box4_div3.textContent = "판매건수: " + response.data.length + "건"
 //         let total_price = 0
@@ -1148,7 +1148,7 @@ function showLectureDetailToday(lecture, user_item) {
   const box2_div1 = document.createElement("div");
   categoryString = "카테고리: ";
   axios
-    .post("http://localhost:8080/findLectureCategory", { id: lecture.id })
+    .post("http://localhost:8080/api/findLectureCategory", { id: lecture.id })
     .then((response) => {
       lectureCategory = response.data;
       lectureCategory.forEach((lectureCategory, index) => {
@@ -1169,7 +1169,7 @@ function showLectureDetailToday(lecture, user_item) {
   const box2_div2 = document.createElement("div");
   const box2_div3 = document.createElement("div");
   axios
-    .post("http://localhost:8080/buyNumber", { id: lecture.id })
+    .post("http://localhost:8080/api/buyNumber", { id: lecture.id })
     .then((response) => {
       box2_div2.textContent = "판매수: " + response.data + "개";
       box2_div3.textContent =
@@ -1193,7 +1193,7 @@ function showLectureDetailToday(lecture, user_item) {
 
   // const box4_div1 = document.createElement("div");
   // axios
-  // .post("http://localhost:8080/teacherSubscription", {id: teacher.id})
+  // .post("http://localhost:8080/api/teacherSubscription", {id: teacher.id})
   // .then((response)=>{
   //     box4_div1.textContent = "구독자: " + response.data + "명"
   // })
@@ -1203,7 +1203,7 @@ function showLectureDetailToday(lecture, user_item) {
 
   // const box4_div2 = document.createElement("div");
   // axios
-  // .post("http://localhost:8080/findTeacherLecture", {id: teacher.id})
+  // .post("http://localhost:8080/api/findTeacherLecture", {id: teacher.id})
   // .then((response)=>{
   //     box4_div2.textContent = "영상 업로드 갯수: " + response.data.length + "개"
   // })
@@ -1214,7 +1214,7 @@ function showLectureDetailToday(lecture, user_item) {
   // const box4_div3 = document.createElement("div");
   // const box4_div4 = document.createElement("div");
   // axios
-  // .post("http://localhost:8080/findLectureUserByTeacher", {id: teacher.id})
+  // .post("http://localhost:8080/api/findLectureUserByTeacher", {id: teacher.id})
   // .then((response)=>{
   //     box4_div3.textContent = "판매건수: " + response.data.length + "건"
   //     let total_price = 0

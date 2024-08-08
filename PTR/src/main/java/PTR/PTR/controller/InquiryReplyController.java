@@ -20,12 +20,12 @@ public class InquiryReplyController {
         this.inquiryReplyService = inquiryReplyService;
     }
     // 1:1문의 답변 달기
-    @PostMapping("replyInquiry")
+    @PostMapping("/api/replyInquiry")
     public ResponseEntity<InquiryReply> replyInquiry(@RequestBody InquiryReply inquiryReply){
         return new ResponseEntity<>(inquiryReplyService.replyInquiry(inquiryReply), HttpStatus.OK);
     }
     // 1:1문의로 답변 조회
-    @PostMapping("findInquiryReply")
+    @PostMapping("/api/findInquiryReply")
     public ResponseEntity<List<InquiryReply>> findInquiryReply(@RequestBody Inquiry inquiry){
         return new ResponseEntity<>(inquiryReplyService.findInquiryReply(inquiry),HttpStatus.OK);
     }

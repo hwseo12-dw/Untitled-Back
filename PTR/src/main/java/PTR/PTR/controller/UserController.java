@@ -35,7 +35,7 @@ public class UserController {
         this.httpServletRequest = httpServletRequest;
     }
     // 회원가입
-    @PostMapping("signup")
+    @PostMapping("/api/signup")
     public ResponseEntity<String> signup(@RequestBody SignupDto signupDto){
         String response = userService.saveUser(signupDto);
         if ("이미 등록된 아이디입니다.".equals(response)) {
@@ -44,7 +44,7 @@ public class UserController {
         return new ResponseEntity<>("회원가입이 완료되었습니다.", HttpStatus.CREATED);
     }
     // 로그인
-    @PostMapping("user/login")
+    @PostMapping("/api/user/login")
     public ResponseEntity<String> login(@RequestBody LoginDto loginDto, HttpServletRequest request){
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getUserId(), loginDto.getPassword())
@@ -55,7 +55,7 @@ public class UserController {
         return ResponseEntity.ok("Success");
     }
     //로그아웃
-    @PostMapping("user/logout")
+    @PostMapping("/api/user/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if (session != null){
@@ -64,7 +64,7 @@ public class UserController {
         return "You have been logged out.";
     }
 
-    @GetMapping("current")
+    @GetMapping("/api/current")
     public SessionDto getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
@@ -76,60 +76,60 @@ public class UserController {
         return sessionDto;
     }
     // 유저 카테고리 수정 및 저장
-    @PostMapping("saveUserCategory")
+    @PostMapping("/api/saveUserCategory")
     public ResponseEntity<String> saveUserCategory(@RequestBody List<UserCategory> userCategories){
         return new ResponseEntity<>(userService.saveUserCategory(userCategories), HttpStatus.OK);
     }
     // 유저 카테고리 삭제
-    @DeleteMapping("deleteUserCategory")
+    @DeleteMapping("/api/deleteUserCategory")
     public ResponseEntity<String> deleteUserCategory(@RequestBody User user){
         return new ResponseEntity<>(userService.deleteUserCategory(user), HttpStatus.OK);
     }
     // 유저 카테고리 조회
-    @PostMapping("findUserCategory")
+    @PostMapping("/api/findUserCategory")
     public ResponseEntity<List<UserCategory>> findUserCategory(@RequestBody User user){
         return new ResponseEntity<>(userService.findUserCategory(user), HttpStatus.OK);
     }
     // 유저 비밀번호 수정
-    @PostMapping("changePassword")
+    @PostMapping("/api/changePassword")
     public ResponseEntity<User> changePassword(@RequestBody User user){
         return new ResponseEntity<>(userService.changePassword(user), HttpStatus.OK);
     }
     // 유저 프로필 이미지 수정
-    @PostMapping("changeProfileImg")
+    @PostMapping("/api/changeProfileImg")
     public ResponseEntity<User> changeProfileImg(@RequestBody User user){
         return new ResponseEntity<>(userService.changeProfileImg(user), HttpStatus.OK);
     }
     // 유저 프로필 글 수정
-    @PostMapping("changeProfileText")
+    @PostMapping("/api/changeProfileText")
     public ResponseEntity<User> changeProfileText(@RequestBody User user){
         return new ResponseEntity<>(userService.changeProfileText(user), HttpStatus.OK);
     }
 
-    @PostMapping("findCoin")
+    @PostMapping("/api/findCoin")
     public ResponseEntity<Integer> findCoin(@RequestBody User user){
         return new ResponseEntity<>(userService.findCoin(user), HttpStatus.OK);
     }
-    @PostMapping("changeCoin")
+    @PostMapping("/api/changeCoin")
     public ResponseEntity<User> changeCoin(@RequestBody User user){
         return new ResponseEntity<>(userService.changeCoin(user), HttpStatus.OK);
     }
 
-    @PostMapping("sendUser")
+    @PostMapping("/api/sendUser")
     public ResponseEntity<User> sendUser(@RequestBody User user){
         return new ResponseEntity<>(userService.sendUser(user), HttpStatus.OK);
     }
 
 
-    @PostMapping("changeUserName")
+    @PostMapping("/api/changeUserName")
     public ResponseEntity<User> changeUserName(@RequestBody User user){
         return new ResponseEntity<>(userService.changeUserName(user), HttpStatus.OK);
     }
-    @PostMapping("changeUserEmail")
+    @PostMapping("/api/changeUserEmail")
     public ResponseEntity<User> changeUserEmail(@RequestBody User user){
         return new ResponseEntity<>(userService.changeUserEmail(user), HttpStatus.OK);
     }
-    @PostMapping("changeUserBirthday")
+    @PostMapping("/api/changeUserBirthday")
     public ResponseEntity<User> changeUserBirthday(@RequestBody User user){
         return new ResponseEntity<>(userService.changeUserBirthday(user), HttpStatus.OK);
     }
