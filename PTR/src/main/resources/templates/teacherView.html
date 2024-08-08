@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/teacherView.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <!-- <div><a href="main.html">메인</a></div> -->
+          <div><a href="lecture.html">교육</a></div>
+          <!-- <div><a href="record.html">관리 및 기록</a></div> -->
+          <!-- <div><a href="community.html">커뮤니티</a></div> -->
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html" class="checkLogin"></a></div>
+        </div>
+        <!-- <div class="login_box">로그인 / 회원가입</div> -->
+      </div>
+      <div class="heading">
+        <div class="head_title">teacher page</div>
+        <div class="head_subtitle">강사 페이지</div>
+      </div>
+      <div class="content">
+        <div class="content_body">
+          <div class="content_body_box">
+            <div class="content_body_box_flex">
+              <div class="content_body_teacher_profile_img"></div>
+              <div class="content_body_teacher_detail">
+                <div class="content_body_teacher_detail_flex">
+                  <div>
+                    <div class="content_body_teacher_name"></div>
+                    <div class="content_body_teacher_subscription_num"></div>
+                    <div class="content_body_teacher_date"></div>
+                  </div>
+                  <div class="content_body_teacher_subscription_btn">구독하기</div>
+                </div>
+                
+                <div class="content_body_teacher_traning">
+                  <div class="content_body_teacher_price_title">1:1 트레이닝</div>
+                  <div class="content_body_teacher_price"></div>
+                  <!-- <div class="content_body_teacher_traning_btn">트레이닝 신청</div> -->
+                </div>
+                <div class="content_body_teacher_profile_text">
+                  <div class="content_body_teacher_profile_text_title">강사 소개</div>
+                  <div class="content_body_teacher_profile_text_value"></div>
+                </div>
+              </div>
+            </div>
+            <div class="content_body_teacher_lecture_grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/teacherView.js"></script>
+    <script src="/js/checkLogin.js"></script>
+  </body>
+</html>

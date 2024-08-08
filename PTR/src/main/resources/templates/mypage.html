@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/mypage.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>  
+        </div>
+        <div class="top_menu">
+          <!-- <div><a href="main.html">메인</a></div> -->
+          <div><a href="lecture.html">교육</a></div>
+          <!-- <div><a href="record.html">관리 및 기록</a></div> -->
+          <!-- <div><a href="community.html">커뮤니티</a></div> -->
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html" class="checkLogin"></a></div>
+        </div>
+        <!-- <div class="login_box">로그인 / 회원가입</div> -->
+      </div>
+      <div class="heading">
+        <div class="head_title">My Page</div>
+        <div class="head_subtitle">
+          <div class="head_subscription">홈 > 마이페이지 > 구독 및 영상 > 구독한 강사</div>
+          <div class="head_subscription1 hiden">홈 > 마이페이지 > 구독 및 영상 > 구매한 영상</div>
+          <div class="head_subscription2 hiden">홈 > 마이페이지 > 구독 및 영상 > 스크랩한 영상</div>
+          <div class="head_subscription3 hiden">홈 > 마이페이지 > 구독 및 영상 > 리뷰관리</div>
+          <!-- <div class="head_traning hiden">홈 > 마이페이지 > 1:1 트레이닝</div> -->
+          <!-- <div class="head_myrecord hiden">홈 > 마이페이지 > 기록 및 통계</div> -->
+          <div class="head_cash hiden">홈 > 마이페이지 > 캐시 충전</div>
+          <div class="head_myid hiden">홈 > 마이페이지 > 계정관리</div>
+        </div>
+      </div>      
+      <div class="content">
+        <div class="content_menu">
+          <div class="subscription cursor_pointer content_menu_bold">구독 및 영상</div>
+          <!-- <div class="traning cursor_pointer">1:1 트레이닝</div>
+          <div class="myrecord cursor_pointer">기록 및 통계</div> -->
+          <div class="cash cursor_pointer">캐시 충전</div>
+          <div class="myid cursor_pointer">계정관리</div>
+          <div class="admin_page_move hiden"><a href="manager.html">관리자 페이지</a></div>
+        </div>
+        <div class="content_body">
+          <div class="content_body_subscription">
+            <div class="content_body_subscription_menu_box">
+              <div class="content_body_subscription_menu1 cursor_pointer content_menu_bold">구독한 강사</div>
+              <div class="content_body_subscription_menu2 cursor_pointer">구매한 영상</div>
+              <div class="content_body_subscription_menu3 cursor_pointer">스크랩한 영상</div>
+              <div class="content_body_subscription_menu4 cursor_pointer">리뷰관리</div>
+            </div>
+            <div class="content_body_subscription_box">
+              <div class="content_body_subscription_box1">
+                <div class="content_body_title">현재 구독중인 강사 목록</div>
+                <div class="content_body_subscriptionlist"></div>
+              </div>
+
+              <div class="content_body_subscription_box2 hiden">
+                <div class="content_body_title">구매한 영상</div>
+                <div class="content_body_favoriteLecture"></div>
+              </div>
+
+              <div class="content_body_subscription_box3 hiden">
+                <div class="content_body_title">나중에 볼 영상</div>
+                <div class="content_body_scrapLecture"></div>
+              </div>
+
+              <div class="content_body_subscription_box4 hiden">
+                <div class="content_body_title">리뷰관리</div>
+                <div class="content_body_review_box">
+                  
+                </div>
+              </div>              
+              
+            </div>
+          </div>
+
+          <!-- <div class="content_body_traning hiden"></div>
+          
+          <div class="content_body_myrecord hiden">
+            <div class="content_body_myrecord_move">
+              <div><a href="recordFood.html">식단 관리하기</a></div>
+              <div><a href="recordExercise.html">운동 관리하기</a></div>
+            </div>
+            <div class="content_body_myrecord_box_title">몸무게</div>
+            <div class="content_body_myrecord_box weight">
+              <div class="content_body_myrecord_chart_box">
+                <canvas id="weight_chart"></canvas>
+              </div>
+            </div>
+            <div class="content_body_myrecord_box_title">식단</div>
+            <div class="content_body_myrecord_box diet">
+              <div class="content_body_myrecord_chart_box">
+                <canvas id="diet_chart"></canvas>
+              </div>
+            </div>
+            <div class="content_body_myrecord_box_title">운동</div>
+            <div class="content_body_myrecord_box exercise">
+              <div class="content_body_myrecord_chart_box">
+                <canvas id="exercise_chart"></canvas>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="content_body_cash hiden">
+            <div class="content_body_cash_title">캐시 충전소</div>
+            <div class="content_body_cash_menu">
+              <div>충전</div>
+              <div>충전내역</div>
+            </div>
+            <div class="content_body_cash_grid">
+              <div class="text_left">현재 보유 단백질바</div>
+              <div class="text_right before_cash"></div>
+            </div>
+            <div class="content_body_cash_box">
+              <div class="content_body_cash_box_img">
+                <img src="/img/cash.jpg" alt="단백질바">
+              </div>
+              <div class="content_body_cash_box_text">단백질바 1개</div>
+              <div class="content_body_cash_box_butten cash_box_butten1">200원</div>
+              <div class="content_body_cash_box_img">
+                <img src="/img/cash.jpg" alt="단백질바">
+              </div>
+              <div class="content_body_cash_box_text">단백질바 10개</div>
+              <div class="content_body_cash_box_butten cash_box_butten10">2000원</div>
+              <div class="content_body_cash_box_img">
+                <img src="/img/cash.jpg" alt="단백질바">
+              </div>
+              <div class="content_body_cash_box_text">단백질바 30개</div>
+              <div class="content_body_cash_box_butten cash_box_butten30">6000원</div>
+              <div class="content_body_cash_box_img">
+                <img src="/img/cash.jpg" alt="단백질바">
+              </div>
+              <div class="content_body_cash_box_text">단백질바 50개</div>
+              <div class="content_body_cash_box_butten cash_box_butten50">10000원</div>
+              <div class="content_body_cash_box_img">
+                <img src="/img/cash.jpg" alt="단백질바">
+              </div>
+              <div class="content_body_cash_box_text">단백질바 100개</div>
+              <div class="content_body_cash_box_butten cash_box_butten100">20000원</div>
+              <div class="content_body_cash_box_img">
+                <img src="/img/cash.jpg" alt="단백질바">
+              </div>
+              <div class="content_body_cash_box_text">단백질바 200개</div>
+              <div class="content_body_cash_box_butten cash_box_butten200">40000원</div>
+            </div>
+            <div class="content_body_cash_grid">
+              <div class="text_left">충전 후 보유 단백질바</div>
+              <div class="text_right after_cash"></div>
+            </div>
+            <div class="content_body_cash_grid_last">
+              <div class="text_left final_price">결제 금액</div>
+              <div class="text_right final_price final_price_value"></div>
+            </div>
+            <div class="content_body_cash_butten">결제하기</div>
+            
+            
+          </div>
+
+          <div class="content_body_myid hiden">
+            <div class="content_body_myid_tap1">
+              <div class="tap_name">개인정보 확인</div>
+              <div class="content_body_myid_tap myid_tap1">개인정보 확인</div>
+              <div class="content_body_myid_hiden_grid">
+                <div class="content_body_myid_name">아이디 : </div>
+                <div class="content_body_myid_value myid_value_id"></div>
+                <div class="content_body_myid_name">이름 : </div>
+                <div class="content_body_myid_value myid_value_name"></div>
+                <div class="content_body_myid_name">이메일 : </div>
+                <div class="content_body_myid_value myid_value_email"></div>
+                <div class="content_body_myid_name">생일 : </div>
+                <div class="content_body_myid_value myid_value_birthday"></div>
+                <div class="content_body_myid_name">가입일 : </div>
+                <div class="content_body_myid_value myid_value_create"></div>
+                <div class="content_body_myid_name">관심분야 : </div>
+                <div class="content_body_myid_value myid_value_category"></div>
+              </div>
+              <div class="content_body_myid_tap myid_tap2">개인정보 수정</div>
+              <div class="content_body_myid_tap myid_tap3">프로필 수정</div>
+            </div>
+
+            <div class="content_body_myid_tap2 hiden">
+              <div class="tap_name">개인정보 수정</div>
+              <div class="content_body_myid_tap myid_tap1">개인정보 확인</div>
+              <div class="content_body_myid_tap myid_tap2">개인정보 수정</div>
+              <div class="myid_tap2_box">
+                <div class="myid_tap2_box_name">개인정보 수정</div>
+                <div class="myid_tap2_box_value">
+                  이름 : <input type="text" id="usernameInput"><br>
+                  비밀번호 : <input type="password" id="passwordInput"><br>
+                  이메일 : <input type="email" id="emailInput" required><br>
+                  생일 : <input type="date" id="birthdayInput"><br>
+                </div>
+                <div class="myid_tap2_box_name">관심분야 설정</div>
+                <div class="myid_tap2_box_value">
+                  <input type="checkbox" name="interest" value="유산소"> 유산소
+                  <input type="checkbox" name="interest" value="근력운동"> 근력운동
+                  <input type="checkbox" name="interest" value="필라테스"> 필라테스
+                  <input type="checkbox" name="interest" value="식단"> 식단
+                </div>
+              </div>
+              <div class="myid_tap2_butten">수정하기</div>
+              <div class="content_body_myid_tap myid_tap3">프로필 수정</div>
+            </div>
+
+            <div class="content_body_myid_tap3 hiden">
+              <div class="tap_name">프로필 수정</div>
+              <div class="content_body_myid_tap myid_tap1">개인정보 확인</div>
+              <div class="content_body_myid_tap myid_tap2">개인정보 수정</div>
+              <div class="content_body_myid_tap myid_tap3">프로필 수정</div>
+              <div class="myid_tap3_name">
+                프로필 이미지
+                <input type="file" class="myid_tap3_value">
+              </div>
+              <div class="myid_tap3_name myid_tap3_name_text">
+                <div>프로필 글</div>
+                <textarea rows="10" class="myid_tap3_value_text"></textarea>
+              </div>
+              <div class="myid_tap3_butten">수정하기</div>
+            </div>
+          </div>
+
+          
+        </div>
+      </div>
+      
+    </div>
+    <script src="/js/mypage.js"></script>
+    <script src="/js/checkLogin.js"></script>
+  </body>
+</html>

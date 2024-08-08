@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/css/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/recordFood.css"
+    />
+    <title>PTR</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <div><a href="main.html">메인</a></div>
+          <div><a href="lecture.html">교육</a></div>
+          <div><a href="record.html">관리 및 기록</a></div>
+          <div><a href="community.html">커뮤니티</a></div>
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+        <div class="login_box"><a href="login.html">로그인 / 회원가입</a></div>
+      </div>
+      <div class="heading">
+        <div class="head_title">Management</div>
+        <div class="head_subtitle">홈 > 관리 및 기록 > 식단</div>
+      </div>
+      <div class="content">
+        <div class="content_menu">
+          <div><a href="record.html">기록 및 통계</a></div>
+          <div><a href="recordFood.html" class="active">식단</a></div>
+          <div><a href="recordExercise.html">운동</a></div>
+        </div>
+        <div class="content_date">
+          <div class="content_date_left">&lt;</div>
+          <div class="content_date_text"></div>
+          <div class="content_date_right">&gt;</div>
+        </div>
+        <div class="content_body">
+          <div class="content_plan_summary">
+            <div class="plan_summary_title">오늘 하루 식단 PLAN</div>
+            <div class="plan_summary">
+              <div class="plan_summary_item">
+                <div class="circle circle-navy">탄</div>
+                <div class="plan_value">0 kcal</div>
+              </div>
+              <div class="plan_summary_item">
+                <div class="circle circle-yellow">단</div>
+                <div class="plan_value">0 kcal</div>
+              </div>
+              <div class="plan_summary_item">
+                <div class="circle circle-white">지</div>
+                <div class="plan_value">0 kcal</div>
+              </div>
+            </div>
+          </div>
+          <div class="detail_title">상세 PLAN</div>
+          <div class="content_detail">
+            <div class="detail_section">
+              <div class="meal" id="breakfast">
+                <div class="meal_time">아침</div>
+                <div class="meal_items">
+                  <!-- 아침 데이터 -->
+                </div>
+              </div>
+              <div class="meal" id="lunch">
+                <div class="meal_time">점심</div>
+                <div class="meal_items">
+                  <!-- 점심 데이터 -->
+                </div>
+              </div>
+              <div class="meal" id="dinner">
+                <div class="meal_time">저녁</div>
+                <div class="meal_items">
+                  <!-- 저녁 데이터 -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/recordFood.js"></script>
+  </body>
+</html>

@@ -1,0 +1,202 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content_body {
+  width: 100%;
+  max-width: 800px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+
+.profile_image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  cursor: pointer;
+}
+
+.profile_image img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-bottom: 20px;
+}
+
+.profile_image input[type="file"] {
+  display: none;
+}
+
+.profile_image label:hover {
+  background: #2c394a;
+  color: white;
+}
+.form_group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.form_group label {
+  width: 160px;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.form_group input[type="text"],
+.form_group input[type="email"],
+.form_group input[type="password"],
+.form_group input[type="date"] {
+  width: 100%;
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.radio_group {
+  display: flex;
+  gap: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.radio_group input[type="radio"] {
+  display: none;
+}
+
+.radio_group label {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.radio_group input[type="radio"]:checked + label {
+  background: #2c394a;
+  color: white;
+}
+
+.radio_group input[type="radio"] + label {
+  background: #f9f9f9;
+  color: #000;
+}
+
+.checkbox_label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.checkbox_group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.checkbox_group div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkbox_group input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.checkbox_group label {
+  display: block;
+  margin-top: 5px;
+}
+
+.weight_group {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+}
+
+.weight_group label {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.weight_group input {
+  height: 30px;
+  margin-bottom: 30px;
+}
+
+.customization_setting {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.customization_setting h1 {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  font-size: 20px;
+  margin-top: 80px;
+}
+
+.customization_setting h1::before,
+.customization_setting h1::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 25%;
+  height: 1px;
+  background: #ccc;
+}
+
+.customization_setting h1::before {
+  left: 0;
+}
+
+.customization_setting h1::after {
+  right: 0;
+}
+
+.customization_setting .subheading {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #2c394a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px;
+  margin-top: 30px;
+}
+
+button[type="submit"]:hover {
+  background: #555;
+}

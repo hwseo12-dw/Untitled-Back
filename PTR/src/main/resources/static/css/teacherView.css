@@ -1,0 +1,206 @@
+.content_body_box{
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+
+.content_body_box_flex{
+    display: flex;
+    margin-bottom: 70px;
+}
+
+
+.content_body_teacher_profile_img{
+    width: 300px;
+    height: 300px;
+    background-color: gray;
+    border-radius: 50%;
+    margin-right: 50px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.content_body_teacher_profile_img > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content_body_teacher_detail{
+    margin-top: 20px;
+}
+
+.content_body_teacher_detail_flex{
+    display: flex;
+    align-items: center;
+}
+
+.content_body_teacher_subscription_btn{
+    margin-left: 30px;
+    background-color: #FEC009;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.content_body_teacher_subscription_btn:hover{
+    background-color: #2C394A;
+    color: #FEC009;
+    cursor: pointer;
+}
+
+.content_body_teacher_name{
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.content_body_teacher_date{
+    color: gray;
+}
+
+.content_body_teacher_subscription_num{
+    color: gray;
+}
+
+.content_body_teacher_traning{
+    display: flex;
+    margin: 40px 0 20px 0;
+    align-items: center;
+}
+
+.content_body_teacher_price_title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.content_body_teacher_price{
+    font-size: 18px;
+    margin-right: 30px;
+}
+
+.content_body_teacher_traning_btn{
+    background-color: #FEC009;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.content_body_teacher_traning_btn{
+    background-color: #FEC009;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.content_body_teacher_traning_btn:hover{
+    background-color: #2C394A;
+    color: #FEC009;
+    cursor: pointer;
+}
+
+.content_body_teacher_profile_text{
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(211, 211, 211);
+    border-radius: 10px;
+    display: flex;
+}
+
+
+.content_body_teacher_profile_text_title{
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.content_body_teacher_profile_text_value{
+    font-size: 18px;
+    /* padding: 10px;
+    margin-left: 10px; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.content_body_teacher_lecture_grid{
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.content_body_interestLecture_box{
+  background-color: rgb(212, 212, 212);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+}
+
+.content_body_interestLecture_box_img{
+  height: 250px;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: gray;
+  overflow: hidden;
+}
+
+.content_body_interestLecture_box_img > video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lecture_flex{
+  display: flex;
+  padding: 20px;
+}
+
+.lecture_teacher_profile{
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lecture_teacher_profile > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 컨테이너를 가득 채우도록 설정 */
+}
+
+.lecture_title{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.lecture_teacher_name{
+  font-size: 18px;
+}
+
+.lecture_updateTime{
+  font-size: 15px;
+  color: gray;
+}
+
+.lecture_price{
+  text-align: end;
+  margin-top: -50px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+  
+  

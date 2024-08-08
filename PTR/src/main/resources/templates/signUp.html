@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/signUp.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <!-- <div><a href="main.html">메인</a></div> -->
+          <div><a href="lecture.html">교육</a></div>
+          <!-- <div><a href="record.html">관리 및 기록</a></div> -->
+          <!-- <div><a href="community.html">커뮤니티</a></div> -->
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+      </div>
+      <div class="heading">
+        <div class="head_title">SignUp</div>
+      </div>
+      <div class="content">
+        <div class="content_body">
+          <form id="signUpForm">
+            <div class="form_group">
+              <label for="name">Id :</label>
+              <input type="text" id="id" required />
+            </div>
+            <div class="form_group">
+              <label for="password">Password :</label>
+              <input type="password" id="password" required />
+            </div>
+            <div class="form_group">
+              <label for="name">Name :</label>
+              <input type="text" id="name" required />
+            </div>
+            <div class="form_group">
+              <label for="email">Email :</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="form_group">
+              <label for="birthday">Birthday :</label>
+              <input type="date" id="birthday" required />
+            </div>
+            <button type="submit" id="signUpBtn">JOIN</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="/js/signUp.js"></script>
+  </body>
+</html>

@@ -1,0 +1,776 @@
+.content_feed{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    position: relative;
+}
+.content_feed2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    position: relative;
+}
+.content_feedheader{
+    width: 70%;
+    height: 60px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.content_feedheader_left{
+    display: flex;
+    gap: 8px;
+}
+.content_feedheader_userPhoto{
+    width: 40px;
+    height: 40px;
+    background-color: gray;
+    border: 1px solid gray;
+    border-radius: 50px;
+}
+.content_feedheader_userPhoto:hover{
+    cursor: pointer;
+}
+.content_feedheader_userId{
+    color: #000;
+    font-size: 1.1rem;
+}
+.content_feedheader_date{
+    font-size: 0.8rem;
+    color: #000;
+}
+.content_feedheader_moreBtn{
+    justify-content: end;
+    display: flex;
+    gap: 9px;
+}
+.content_feedheader_moreBtn{
+    cursor: pointer;
+}
+.dot{
+    width: 5px;
+    height: 5px;
+    border: 1px solid black;
+    border-radius: 50px;
+    background-color: black;
+}
+
+.content_feedPhoto{
+    width: 70%;
+    aspect-ratio: 5 / 4;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: gray;
+}
+
+.content_feedfooter{
+    width: 70%;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.content_feedfooter_left{
+    align-items: center;
+}
+.content_feedfooter_text{
+    font-size: 1.2rem;
+    color: #000;
+}
+.content_feedfooter_right{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 5px;
+}
+.content_feedfooter_likeBtn{
+    width: 20px;
+    height: 20px;
+}
+.content_feedfooter_likeBtn:hover{
+    cursor: pointer;
+}
+.content_feedfooter_like{
+    color: #000;
+}
+.content_feedfooter_commentBtn{
+    width: 20px;
+    height: 20px;
+}
+.content_feedfooter_commentBtn:hover{
+    cursor: pointer;
+}
+.content_feedfooter_comment{
+    color: #000;
+}
+.content_feedfooter_scrapBtn{
+    width: 20px;
+    height: 20px;
+}
+.content_feedfooter_scrapBtn:hover{
+    cursor: pointer;
+}
+/*댓글*/
+.content_feedcommentbox{
+    position: fixed;
+    top: 150px;
+    right: 0;
+    width: 25%;
+    height: 500px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 15px;
+}
+.content_feedcomment_header{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.content_feedcomment_text{
+    color: #000;
+}
+.content_feedcomment_closeBtn{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 30px;
+}
+.content_feedcomment_closeBtn:hover{
+    cursor: pointer;
+}
+.content_feedcomment_body{
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 1px;
+    width: 100%;
+    height: 380px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.content_feedcomment{
+    display: grid;
+    width: 95%;
+    height: auto;
+    grid-template-columns: 1fr 8fr 1fr;
+    gap: 10px;
+}
+.content_feedcomment_userPhoto{
+    width: 35px;
+    height: 35px;
+    background-color: gray;
+    border: 1px solid gray;
+    border-radius: 50px;
+}
+.content_feedcomment_userId{
+    color: #000;
+    font-size: 0.8rem;
+}
+.content_feedcomment_text{
+    color: #000;
+}
+.content_feedcomment_right{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.content_feedcomment_likeBtn{
+    width: 20px;
+    height: 20px;
+}
+.content_feedcomment_likeBtn:hover{
+    cursor: pointer;
+}
+.content_feedcomment_like{
+    color: #000;
+}
+.content_feedcomment_deleteComment{
+    width: 20px;
+    height: 20px;
+}
+.content_feedcomment_deleteComment:hover{
+    cursor: pointer;
+}
+.content_feedcomment_footer{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 0;
+    width: 100%;
+    height: 35px;
+}
+#commentText{
+    width: 80%;
+    height: 30px;
+}
+.content_feedcomment_forwardBtn{
+    width: 20%;
+    height: 30px;
+    background-color: #2c394a;
+    color: #fec009;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    line-height: 30px;
+}
+.content_feedcomment_forwardBtn:hover{
+    cursor: pointer;
+    color: #2c394a;
+    background-color: #fec009;
+}
+
+/*더보기창*/
+.content_feedMore{
+    position: fixed;
+    top: 35%;
+    right: 15%;
+    width: 150px;
+    height: 125px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 15px;
+    padding-top: 20px;
+}
+.content_feedMore_closeBtn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.content_feedMore_changeBtn, .content_feedMore_delete{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+.content_feedMore_changeBtn:hover, .content_feedMore_delete:hover, .content_feedMore_likeCheck:hover, .content_feedMore_closeBtn{
+    cursor: pointer;
+}
+.content_feedMore_likeList{
+    right: 0;
+    width: 15%;
+    position: fixed;
+    top: 35%;
+    height: auto;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 15px;
+    padding-top: 20px;
+}
+.content_feedMore_likeList_closeBtn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.content_feedMore_likeList_closeBtn:hover{
+    cursor: pointer;
+}
+.content_feedMore_like{
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-left: 5px;
+    display: flex;
+    gap: 5px;
+}
+.content_feedMore_like_userPhoto{
+    width: 30px;
+    aspect-ratio: 1 / 1;
+}
+.content_feedMore_like_userId{
+    width: 70%;
+    height: 30px;
+}
+/*피드 작성*/
+.content_updateFeed{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+.content_updateFeed_header{
+    width: 70%;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    gap: 8px;
+    padding: 10px;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.content_updateFeed_left{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.content_updateFeed_userPhoto{
+    width: 35px;
+    height: 35px;
+    background-color: gray;
+    border: 1px solid gray;
+    border-radius: 50px;
+}
+.content_updateFeed_myId{
+    color: #000;
+}
+.content_updateFeed_right{
+    display: flex;
+    gap: 8px;
+}
+.content_updateFeed_add{
+    width: 35px;
+    height: 35px;
+}
+.content_updateFeed_add:hover{
+    cursor: pointer;
+}
+.content_updateFeed_createBtn{
+    width: 60px;
+    height: 35px;
+    background-color: #2c394a;
+    color: #fec009;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.content_updateFeed_createBtn:hover{
+    cursor: pointer;
+    background-color: #fec009;
+    color: #2c394a;
+}
+/* .content_updateFeed_body{
+    width: 70%;
+    aspect-ratio: 5 / 4;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 15px;
+} */
+.content_updateFeed_inputBox{
+    width: 70%;
+    /* aspect-ratio: 5 / 1; */
+    height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    text-align: center;
+    /* line-height: 10; */
+    padding: 20px;
+}
+.input-large2 {
+    width: 80%;
+    height: 160px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 15px;
+}
+
+/*피드 작성*/
+.content_createFeed{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+.content_createFeed_header{
+    width: 70%;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    gap: 8px;
+    padding: 10px;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.content_createFeed_left{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.content_createFeed_userPhoto{
+    width: 35px;
+    height: 35px;
+    background-color: gray;
+    border: 1px solid gray;
+    border-radius: 50px;
+}
+.content_createFeed_myId{
+    color: #000;
+}
+.content_createFeed_right{
+    display: flex;
+    gap: 8px;
+}
+.content_createFeed_add{
+    width: 35px;
+    height: 35px;
+}
+.content_createFeed_add:hover{
+    cursor: pointer;
+}
+.content_createFeed_createBtn{
+    width: 60px;
+    height: 35px;
+    background-color: #2c394a;
+    color: #fec009;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.content_createFeed_createBtn:hover{
+    cursor: pointer;
+    background-color: #fec009;
+    color: #2c394a;
+}
+/* .content_createFeed_body{
+    width: 70%;
+    aspect-ratio: 5 / 4;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 15px;
+} */
+.content_createFeed_inputBox{
+    width: 70%;
+    /* aspect-ratio: 5 / 1; */
+    height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    text-align: center;
+    /* line-height: 10; */
+    padding: 20px;
+}
+.input-large {
+    width: 80%;
+    height: 160px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 15px;
+}
+
+/*마이 피드*/
+.content_myFeed{
+  width: 100%;
+  text-align: center;
+}
+
+.content_myFeed_profile{
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: 10px;
+}
+
+
+.content_myFeed_profile_left_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+#content_myFeed_profile_img{
+  height: 300px;
+  width: 300px;
+  margin-bottom: 20px;
+  background-color: gray;
+  border-radius: 100%;
+}
+
+.content_myFeed_profile_id{
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.content_myFeed_profile_right{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content_myFeed_profile_box{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 30px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.content_myFeed_profile_text{
+  text-align: start;
+  margin: 20px;
+  background-color: rgb(192, 192, 192);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: lighter;
+}
+
+.content_myFeed_profile_butten_box{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.content_myFeed_profile_butten{
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 20px;
+}
+.content_myFeed_profile_butten:hover{
+  background-color: #FEC009;
+  color: #2C394A;
+  border: none;
+  cursor: pointer;
+}
+
+.content_myFeed_myfeeds{
+  margin-top: 100px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.content_myFeed_feed{
+  background-color: gray;
+  width: 100%;;
+  height: 300px;
+}
+.content_myFeed_profile_box_numberOfFollower:hover, .content_myFeed_profile_box_numberOfFollowing:hover{
+    cursor: pointer;
+}
+
+/*다른 유저 피드*/
+.content_otherFeed{
+    width: 100%;
+    text-align: center;
+  }
+  
+  .content_otherFeed_profile{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    gap: 10px;
+  }
+  
+  
+  .content_otherFeed_profile_left_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+  }
+  
+  .content_otherFeed_profile_img{
+    height: 300px;
+    width: 300px;
+    margin-bottom: 20px;
+    background-color: gray;
+    border-radius: 100%;
+  }
+  
+  .content_otherFeed_profile_id{
+    font-weight: bold;
+  }
+  
+  .content_otherFeed_profile_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .content_otherFeed_profile_box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .content_otherFeed_profile_text{
+    text-align: start;
+    margin: 20px;
+    background-color: rgb(192, 192, 192);
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: lighter;
+  }
+  
+  .content_otherFeed_profile_butten_box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+  
+  .content_otherFeed_profile_butten{
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+  }
+  .content_otherFeed_profile_butten:hover{
+    background-color: #FEC009;
+    color: #2C394A;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .content_otherFeed_feeds{
+    margin-top: 100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .content_otherFeed_feed > div{
+    background-color: gray;
+    width: 100%;
+    height: 300px;
+  }
+
+/*팔로워 확인*/
+.content_follower, .content_following{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+}
+.content_follower_header, .content_following_header{
+    display: flex;
+    align-items: center;
+}
+.content_follower_backBtn, .content_following_backBtn{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 30px;
+}
+.content_follower_backBtn:hover, .content_following_backBtn:hover{
+    cursor: pointer;
+}
+.content_follower_text, .content_following_text{
+    color: #000;
+    font-size: 1.2rem;
+}
+.content_follower_follower, .content_following_following{
+    width: 70%;
+    height: auto;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    border: 1px solid #000;
+    padding: 20px;
+    row-gap: 20px; 
+}
+.content_follower_left, .content_following_left{
+    display: flex;
+    gap: 10px;
+}
+.content_follower_userPhoto, .content_following_userPhoto{
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    border: 1px solid gray;
+    border-radius: 50px;
+}
+.content_follower_userPhoto:hover, .content_following_userPhoto:hover{
+    cursor: pointer;
+}
+.content_follower_userId, .content_following_userId{
+    color: #000;
+    font-size: 1.2rem;
+}
+.content_follower_userName, .content_following_userName{
+    color: #000;
+    
+}
+.content_follower_right, .content_following_right{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.content_follower_deleteFollower, .content_following_deleteFollowing{
+    width: 60px;
+    height: 40px;
+    border: 1px solid #000;
+    margin-right: 0px;
+    text-align: center;
+    line-height: 40px;
+}
+.content_follower_deleteFollower:hover, .content_following_deleteFollowing:hover{
+    cursor: pointer;
+}
+/*scrap*/
+.content_scrapFeed{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+.content_scrapFeed_header{
+    color: #000;
+    font-size: 2rem;
+}
+.content_scrapFeed_feeds{
+    margin-top: 80px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+  
+.content_scrapFeed_feed{
+    background-color: gray;
+    width: 100%;
+    height: 200px;
+}
+
+/*하단 고정*/
+.blank{
+    height: 120px;
+}
+.footer_feedMenu{
+    width: 100%;
+    height: 100px;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    display : flex;
+    justify-content: center;
+    gap : 200px;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+}
+.footer_feedMenu_feedHomeBtn, .footer_feedMenu_createFeedBtn, .footer_feedMenu_myFeedBtn, 
+.footer_feedMenu_scrapFeedBtn{
+    width: 70px;
+    height: 70px;
+}
+
+.footer_feedMenu_createFeedBtn:hover, .footer_feedMenu_feedHomeBtn:hover,
+ .footer_feedMenu_myFeedBtn:hover, .footer_feedMenu_scrapFeedBtn{
+    cursor: pointer;
+}
+
+
+
+.hiden{
+    display: none;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/management.css" />
+    <title>PTR</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <!-- <div><a href="main.html">메인</a></div> -->
+          <div><a href="lecture.html">교육</a></div>
+          <!-- <div><a href="record.html">관리 및 기록</a></div> -->
+          <!-- <div><a href="community.html">커뮤니티</a></div> -->
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+        <!-- <div class="login_box">로그인 / 회원가입</div> -->
+      </div>
+      <div class="heading">
+        <div class="head_title">Management</div>
+        <div class="head_subtitle">홈 &gt; 관리 및 기록 &gt; 기록 및 통계</div>
+      </div>
+      <div class="content">
+        <div class="content_menu">
+          <div><a href="record.html" class="active">기록 및 통계</a></div>
+          <div><a href="recordFood.html">식단</a></div>
+          <div><a href="recordExercise.html">운동</a></div>
+        </div>
+        <div class="content_date">
+          <div class="content_date_left">&lt;</div>
+          <div class="content_date_text">날짜를 선택하세요</div>
+          <div class="content_date_right">&gt;</div>
+        </div>
+        <div class="content_body">
+          <div class="content_plan_summary">
+            <div class="plan_summary_title">오늘 하루 누적 기록</div>
+            <div class="plan_summary">
+              <div class="plan_summary_item">
+                <div>섭취량</div>
+                <div class="plan_value">0 kcal</div>
+              </div>
+              <div class="plan_summary_item">
+                <div>소모량</div>
+                <div class="plan_value">0 kcal</div>
+              </div>
+              <div class="plan_summary_item">
+                <div>물</div>
+                <div class="plan_value">0 L</div>
+              </div>
+              <div class="plan_summary_item">
+                <div>체중</div>
+                <div class="plan_value">0 kg</div>
+              </div>
+            </div>
+          </div>
+          <div class="detail_title">
+            <div class="tabs">
+              <ul>
+                <li class="active" data-target="intake">섭취량</li>
+                <li data-target="exercise">운동량</li>
+              </ul>
+            </div>
+          </div>
+          <div class="content_detail">
+            <div class="detail_section active" id="intake">
+              <div class="meal" id="carbs">
+                <div class="meal_time">
+                  <div class="circle" id="carbs_circle"></div>
+                  <div>탄수화물</div>
+                </div>
+                <div class="meal_items" id="carbs_items"></div>
+                <div class="meal_controls">
+                  <button onclick="registerItem('carbs')">등록</button> |
+                  <button onclick="modifyItem('carbs')">수정</button> |
+                  <button onclick="deleteItem('carbs')">삭제</button>
+                </div>
+              </div>
+              <div class="meal" id="proteins">
+                <div class="meal_time">
+                  <div class="circle" id="proteins_circle"></div>
+                  <div>단백질</div>
+                </div>
+                <div class="meal_items" id="proteins_items"></div>
+                <div class="meal_controls">
+                  <button onclick="registerItem('proteins')">등록</button> |
+                  <button onclick="modifyItem('proteins')">수정</button> |
+                  <button onclick="deleteItem('proteins')">삭제</button>
+                </div>
+              </div>
+              <div class="meal" id="fats">
+                <div class="meal_time">
+                  <div class="circle" id="fats_circle"></div>
+                  <div>지방</div>
+                </div>
+                <div class="meal_items" id="fats_items"></div>
+                <div class="meal_controls">
+                  <button onclick="registerItem('fats')">등록</button> |
+                  <button onclick="modifyItem('fats')">수정</button> |
+                  <button onclick="deleteItem('fats')">삭제</button>
+                </div>
+              </div>
+            </div>
+            <div class="detail_section" id="exercise">
+              <div class="meal" id="exercise1">
+                <div class="meal_time">
+                  <div class="circle" id="exercise1_circle"></div>
+                  <div>유산소</div>
+                </div>
+                <div class="meal_items" id="exercise1_items"></div>
+                <div class="meal_controls">
+                  <button onclick="registerItem('exercise1')">등록</button> |
+                  <button onclick="modifyItem('exercise1')">수정</button> |
+                  <button onclick="deleteItem('exercise1')">삭제</button>
+                </div>
+              </div>
+              <div class="meal" id="exercise2">
+                <div class="meal_time">
+                  <div class="circle" id="exercise2_circle"></div>
+                  <div>근력 운동</div>
+                </div>
+                <div class="meal_items" id="exercise2_items"></div>
+                <div class="meal_controls">
+                  <button onclick="registerItem('exercise2')">등록</button> |
+                  <button onclick="modifyItem('exercise2')">수정</button> |
+                  <button onclick="deleteItem('exercise2')">삭제</button>
+                </div>
+              </div>
+              <div class="meal" id="exercise3">
+                <div class="meal_time">
+                  <div class="circle" id="exercise3_circle"></div>
+                  <div>스트레칭</div>
+                </div>
+                <div class="meal_items" id="exercise3_items"></div>
+                <div class="meal_controls">
+                  <button onclick="registerItem('exercise3')">등록</button> |
+                  <button onclick="modifyItem('exercise3')">수정</button> |
+                  <button onclick="deleteItem('exercise3')">삭제</button>
+                </div>
+              </div>
+              <div class="meal" id="exercise4">
+                <div class="meal_time">
+                  <div class="circle" id="exercise4_circle"></div>
+                  <div>요가</div>
+                </div>
+                <div class="meal_items" id="exercise4_items"></div>
+                <div class="meal_controls">
+                  <button onclick="registerItem('exercise4')">등록</button> |
+                  <button onclick="modifyItem('exercise4')">수정</button> |
+                  <button onclick="deleteItem('exercise4')">삭제</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content_footer">
+            <div class="water_intake">
+              <div class="footer_title">물 섭취량</div>
+              <div class="footer_body">
+                <div class="water_circle" id="water_circle"></div>
+                <div class="water_amount">
+                  <button id="decrease">-</button>
+                  <span id="waterAmount">0.00</span> L
+                  <button id="increase">+</button>
+                </div>
+                <button onclick="updateWaterIntake()">기록하기</button>
+              </div>
+            </div>
+            <div class="weight">
+              <div class="footer_title">체중</div>
+              <div class="footer_body">
+                <div class="water_circle" id="weight_circle"></div>
+                <div class="weight_value">
+                  <input type="text" id="weightInput" /> kg
+                </div>
+                <button onclick="updateWeight()">기록하기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/management.js"></script>
+  </body>
+</html>

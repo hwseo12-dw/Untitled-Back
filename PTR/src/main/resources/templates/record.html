@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/record.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
+    <title>PTR</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="logo">
+          <h1>PTR</h1>
+        </div>
+        <div class="top_menu">
+          <!-- <div><a href="main.html">메인</a></div> -->
+          <div><a href="lecture.html">교육</a></div>
+          <!-- <div><a href="record.html">관리 및 기록</a></div> -->
+          <!-- <div><a href="community.html">커뮤니티</a></div> -->
+          <div><a href="feed.html">피드</a></div>
+          <div><a href="mypage.html">마이페이지</a></div>
+          <div><a href="customerService.html">고객센터</a></div>
+          <div><a href="login.html">로그인</a></div>
+        </div>
+        <!-- <div class="login_box"><a href="login.html">로그인 / 회원가입</a></div> -->
+      </div>
+      <div class="heading">
+        <div class="head_title">Management</div>
+        <div class="head_subtitle">홈 > 관리 및 기록 > 기록 및 통계</div>
+      </div>
+      <div class="content">
+        <div class="content_menu">
+          <div><a href="record.html" class="active">기록 및 통계</a></div>
+          <div><a href="recordFood.html">식단</a></div>
+          <div><a href="recordExercise.html">운동</a></div>
+        </div>
+        <div class="content_body">
+          <div class="content_date">
+            <div class="content_date_left" onclick="prevMonth()">&lt;</div>
+            <div class="content_date_year">2024.</div>
+            <div class="content_date_month">06</div>
+            <div class="content_date_right" onclick="nextMonth()">&gt;</div>
+          </div>
+          <div class="content_chart">
+            <table id="calendar">
+              <thead>
+                <tr>
+                  <th>일</th>
+                  <th>월</th>
+                  <th>화</th>
+                  <th>수</th>
+                  <th>목</th>
+                  <th>금</th>
+                  <th>토</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div id="selectedDate" class="selected-date"></div>
+          <button id="recordButton" class="record-button" style="display: none">
+            기록하기
+          </button>
+          <div class="content_stat">
+            <div class="content_stat_section">
+              <div class="content_stat_body">
+                <div class="average_calories chart_weight"></div>
+                <canvas id="barChartweight"></canvas>
+              </div>
+            </div>
+            <div class="content_stat_section">
+              <div class="content_stat_body">
+                <div class="average_calories">이번 달 평균 칼로리 섭취량</div>
+                <canvas id="barChartIntake"></canvas>
+              </div>
+            </div>
+            <div class="content_stat_section">
+              <div class="content_stat_body">
+                <div class="average_calories">이번 달 평균 운동량</div>
+                <canvas id="barChartExercise"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/record.js"></script>
+  </body>
+</html>
