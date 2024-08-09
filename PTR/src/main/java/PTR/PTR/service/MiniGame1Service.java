@@ -1,7 +1,6 @@
 package PTR.PTR.service;
 
 import PTR.PTR.exception.ResourceNotFoundException;
-import PTR.PTR.model.Feed;
 import PTR.PTR.model.MiniGame1;
 import PTR.PTR.model.User;
 import PTR.PTR.repository.MiniGame1Repository;
@@ -35,7 +34,10 @@ public class MiniGame1Service {
         }else {
             MiniGame1 temp = miniGame1Optional.get();
             miniGame1Optional.get().setScore(miniGame1.getScore());
-//            if (miniGame1.getScore() > )
+            if (miniGame1.getScore() > miniGame1.getHighScore()){
+                miniGame1Optional.get().setHighScore(miniGame1.getScore());
+            }
+            miniGame1Optional.get().setCreatedAt(LocalDateTime.now());
             miniGame1Repository.save(temp);
             return temp;
         }
@@ -43,7 +45,9 @@ public class MiniGame1Service {
 
     //전체 순위
     public List<MiniGame1> getMiniGame1Rank(){
+        List<MiniGame1> miniGameList = miniGame1Repository.findAll();
         //순위 정렬 필요
+        miniGameList.sort((m1, m2) -> Integer.compare(m2.getHighScore(), m1.getHighScore()));
         return miniGame1Repository.findAll();
     }
 
