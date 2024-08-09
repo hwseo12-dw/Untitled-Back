@@ -23,24 +23,33 @@ public class MiniGame1Service {
 
 
     // 점수 등록  //유저들을 검사해서 랭킹목록에 없으면 0점으로 기록해서 등록
-    public MiniGame1 saveMiniGame1(MiniGame1 miniGame1){
+    public void saveMiniGame1(){
         List<MiniGame1> miniGame1List = miniGame1Repository.findAll();
         List<User> userList = userRepository.findAll();
 
+        boolean isUserRanked = false;
+
         for (int i = 0; i < userList.size(); i++){
             for (int j = 0; j < miniGame1List.size(); j++){
-                if (userList.get(i).getUserId() == miniGame1List.get(j).getUser().getUserId()){
+                if (userList.get(i).getUserId().equals(miniGame1List.get(j).getUser().getUserId())){
+                    isUserRanked = true;
                     break;
                 }
             }
+            if (!isUserRanked) {
+                MiniGame1 newMiniGame1 = new MiniGame1();
+                newMiniGame1.setUser(userList.get(i));
+                newMiniGame1.setScore(0); // 초기 점수를 0으로 설정
+                newMiniGame1.setHighScore(0); // 초기 점수를 0으로 설정
+                newMiniGame1.setCreatedAt(LocalDateTime.now());
+                miniGame1Repository.save(newMiniGame1);
+            }
         }
 
-        miniGame1.setCreatedAt(LocalDateTime.now());
-        return miniGame1Repository.save(miniGame1);
     }
 
     // 점수 갱신
-    public MiniGame1 updateMiniGameScore(MiniGame1 miniGame1){
+    public MiniGame1 updateMiniGame1Score(MiniGame1 miniGame1){
         Optional<MiniGame1> miniGame1Optional = miniGame1Repository.findById(miniGame1.getId());
         if (miniGame1Optional.isEmpty()){
             throw new ResourceNotFoundException("MiniGame1", "Id", miniGame1.getId());
@@ -58,7 +67,7 @@ public class MiniGame1Service {
 
     // 매주 월요일 자정에 점수 초기화
     @Scheduled(cron = "0 0 0 * * MON")
-    public void resetUserScoresWeekly() {
+    public void resetMiniGame1Score() {
         List<MiniGame1> miniGameList = miniGame1Repository.findAll();
         for (MiniGame1 user : miniGameList) {
             user.setScore(0);
