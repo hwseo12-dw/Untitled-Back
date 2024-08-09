@@ -18,9 +18,6 @@ public class TeacherService {
         this.teacherRepository = teacherRepository;
     }
 
-    public Teacher changeTeacher(Teacher teacher){
-        return teacherRepository.save(teacher);
-    }
 
     public Teacher getTeacherById(long id){
         return teacherRepository.findById(id).get();

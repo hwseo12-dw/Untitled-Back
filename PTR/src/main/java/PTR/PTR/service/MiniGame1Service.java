@@ -5,6 +5,7 @@ import PTR.PTR.model.MiniGame1;
 import PTR.PTR.model.User;
 import PTR.PTR.repository.MiniGame1Repository;
 import PTR.PTR.repository.UserRepository;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -20,8 +21,20 @@ public class MiniGame1Service {
         this.miniGame1Repository = miniGame1Repository;
     }
 
-    // 점수 등록  //점수는 0점으로 일요일 12시가 지나면 최고 점수를 다 0점으로 변경
+
+    // 점수 등록  //유저들을 검사해서 랭킹목록에 없으면 0점으로 기록해서 등록
     public MiniGame1 saveMiniGame1(MiniGame1 miniGame1){
+        List<MiniGame1> miniGame1List = miniGame1Repository.findAll();
+        List<User> userList = userRepository.findAll();
+
+        for (int i = 0; i < userList.size(); i++){
+            for (int j = 0; j < miniGame1List.size(); j++){
+                if (userList.get(i).getUserId() == miniGame1List.get(j).getUser().getUserId()){
+                    break;
+                }
+            }
+        }
+
         miniGame1.setCreatedAt(LocalDateTime.now());
         return miniGame1Repository.save(miniGame1);
     }
@@ -40,6 +53,16 @@ public class MiniGame1Service {
             miniGame1Optional.get().setCreatedAt(LocalDateTime.now());
             miniGame1Repository.save(temp);
             return temp;
+        }
+    }
+
+    // 매주 월요일 자정에 점수 초기화
+    @Scheduled(cron = "0 0 0 * * MON")
+    public void resetUserScoresWeekly() {
+        List<MiniGame1> miniGameList = miniGame1Repository.findAll();
+        for (MiniGame1 user : miniGameList) {
+            user.setScore(0);
+            miniGame1Repository.save(user);
         }
     }
 

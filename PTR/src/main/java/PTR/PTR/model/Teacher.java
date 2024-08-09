@@ -19,6 +19,4 @@ public class Teacher {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @Column(name = "price")
-    private int price;
 }
