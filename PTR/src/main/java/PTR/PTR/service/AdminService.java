@@ -32,7 +32,6 @@ public class AdminService {
         }
         Teacher teacher = new Teacher();
         teacher.setUser(user);
-        teacher.setPrice(0);
         teacherRepository.save(teacher);
         return teacher.getUser().getUserId();
     }
