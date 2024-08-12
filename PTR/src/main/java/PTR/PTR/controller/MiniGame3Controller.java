@@ -1,9 +1,7 @@
 package PTR.PTR.controller;
 
-import PTR.PTR.model.MiniGame2;
 import PTR.PTR.model.MiniGame3;
 import PTR.PTR.model.User;
-import PTR.PTR.service.MiniGame2Service;
 import PTR.PTR.service.MiniGame3Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
