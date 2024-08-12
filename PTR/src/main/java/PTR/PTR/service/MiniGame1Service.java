@@ -11,41 +11,40 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class MiniGame1Service {
     MiniGame1Repository miniGame1Repository;
     UserRepository userRepository;
 
-    public MiniGame1Service(MiniGame1Repository miniGame1Repository) {
+    public MiniGame1Service(MiniGame1Repository miniGame1Repository, UserRepository userRepository) {
         this.miniGame1Repository = miniGame1Repository;
+        this.userRepository = userRepository;
     }
-
 
     // 점수 등록  //유저들을 검사해서 랭킹목록에 없으면 0점으로 기록해서 등록
     public void saveMiniGame1(){
         List<MiniGame1> miniGame1List = miniGame1Repository.findAll();
         List<User> userList = userRepository.findAll();
 
-        boolean isUserRanked = false;
+        // 현재 랭크된 사용자 ID를 추출하여 Set에 저장
+        Set<String> rankedUserIds = miniGame1List.stream()
+                .map(miniGame -> miniGame.getUser().getUserId())
+                .collect(Collectors.toSet());
 
-        for (int i = 0; i < userList.size(); i++){
-            for (int j = 0; j < miniGame1List.size(); j++){
-                if (userList.get(i).getUserId().equals(miniGame1List.get(j).getUser().getUserId())){
-                    isUserRanked = true;
-                    break;
-                }
-            }
-            if (!isUserRanked) {
+        for (User user : userList) {
+            // 사용자가 이미 랭크되어 있는지 확인
+            if (!rankedUserIds.contains(user.getUserId())) {
                 MiniGame1 newMiniGame1 = new MiniGame1();
-                newMiniGame1.setUser(userList.get(i));
+                newMiniGame1.setUser(user);
                 newMiniGame1.setScore(0); // 초기 점수를 0으로 설정
                 newMiniGame1.setHighScore(0); // 초기 점수를 0으로 설정
                 newMiniGame1.setCreatedAt(LocalDateTime.now());
                 miniGame1Repository.save(newMiniGame1);
             }
         }
-
     }
 
     // 점수 갱신

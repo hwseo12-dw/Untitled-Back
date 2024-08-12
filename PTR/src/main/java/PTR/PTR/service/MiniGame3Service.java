@@ -1,6 +1,7 @@
 package PTR.PTR.service;
 
 import PTR.PTR.exception.ResourceNotFoundException;
+import PTR.PTR.model.MiniGame1;
 import PTR.PTR.model.MiniGame3;
 import PTR.PTR.model.User;
 import PTR.PTR.repository.MiniGame3Repository;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class MiniGame3Service {
@@ -27,22 +30,20 @@ public class MiniGame3Service {
         List<MiniGame3> miniGame3List = miniGame3Repository.findAll();
         List<User> userList = userRepository.findAll();
 
-        boolean isUserRanked = false;
+        // 현재 랭크된 사용자 ID를 추출하여 Set에 저장
+        Set<String> rankedUserIds = miniGame3List.stream()
+                .map(miniGame -> miniGame.getUser().getUserId())
+                .collect(Collectors.toSet());
 
-        for (int i = 0; i < userList.size(); i++){
-            for (int j = 0; j < miniGame3List.size(); j++){
-                if (userList.get(i).getUserId().equals(miniGame3List.get(j).getUser().getUserId())){
-                    isUserRanked = true;
-                    break;
-                }
-            }
-            if (!isUserRanked) {
-                MiniGame3 newMiniGame2 = new MiniGame3();
-                newMiniGame2.setUser(userList.get(i));
-                newMiniGame2.setScore(0); // 초기 점수를 0으로 설정
-                newMiniGame2.setHighScore(0); // 초기 점수를 0으로 설정
-                newMiniGame2.setCreatedAt(LocalDateTime.now());
-                miniGame3Repository.save(newMiniGame2);
+        for (User user : userList) {
+            // 사용자가 이미 랭크되어 있는지 확인
+            if (!rankedUserIds.contains(user.getUserId())) {
+                MiniGame3 newMiniGame3 = new MiniGame3();
+                newMiniGame3.setUser(user);
+                newMiniGame3.setScore(0); // 초기 점수를 0으로 설정
+                newMiniGame3.setHighScore(0); // 초기 점수를 0으로 설정
+                newMiniGame3.setCreatedAt(LocalDateTime.now());
+                miniGame3Repository.save(newMiniGame3);
             }
         }
 

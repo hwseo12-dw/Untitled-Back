@@ -3,10 +3,7 @@ package PTR.PTR.controller;
 import PTR.PTR.model.MiniGame3;
 import PTR.PTR.model.User;
 import PTR.PTR.service.MiniGame3Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +16,13 @@ public class MiniGame3Controller {
         this.miniGame3Service = miniGame3Service;
     }
 
+    @PostMapping("/api/saveMiniGame3")
+    public void saveMiniGame3(){
+        miniGame3Service.saveMiniGame3();
+    }
+
     // 점수 갱신
-    @PutMapping("/api/miniGame3")
+    @PutMapping("/api/updateMiniGame3")
     public MiniGame3 updateMiniGame3Score(@RequestBody MiniGame3 miniGame3){
         return miniGame3Service.updateMiniGame3Score(miniGame3);
     }

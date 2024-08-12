@@ -16,8 +16,13 @@ public class MiniGame1Controller {
         this.miniGame1Service = miniGame1Service;
     }
 
+    @PostMapping("/api/saveMiniGame1")
+    public void saveMiniGame1(){
+        miniGame1Service.saveMiniGame1();
+    }
+
     // 점수 갱신
-    @PutMapping("/api/miniGame1")
+    @PutMapping("/api/updateMiniGame1")
     public MiniGame1 updateMiniGame1Score(@RequestBody MiniGame1 miniGame1){
         return miniGame1Service.updateMiniGame1Score(miniGame1);
     }
