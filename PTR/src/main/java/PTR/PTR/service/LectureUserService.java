@@ -54,7 +54,7 @@ public class LectureUserService {
     }
 
     public LectureUser changeLectureUser(LectureUser lectureUser){
-        LectureUser changeLectureUser = lectureUserRepository.findById(lectureUser.getId()).get();
+        LectureUser changeLectureUser = lectureUserRepository.findByUserAndLecture(lectureUser.getUser(), lectureUser.getLecture());
         changeLectureUser.setTeacherReview(lectureUser.getTeacherReview());
         changeLectureUser.setTeacherRating(lectureUser.getTeacherRating());
         return lectureUserRepository.save(changeLectureUser);

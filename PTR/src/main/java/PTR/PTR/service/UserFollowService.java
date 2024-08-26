@@ -17,9 +17,10 @@ public class UserFollowService {
     }
 
     //유저 팔로우
-    public UserFollow saveUserFollow(UserFollow userFollow){
+    public String saveUserFollow(UserFollow userFollow){
         userFollow.setCreatedAt(LocalDateTime.now());
-        return userFollowRepository.save(userFollow);
+        userFollowRepository.save(userFollow);
+        return "정상 작동됨";
     }
 
     //팔로우 취소

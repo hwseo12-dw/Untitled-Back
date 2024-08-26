@@ -3,10 +3,12 @@ package PTR.PTR.service;
 import PTR.PTR.exception.ResourceNotFoundException;
 import PTR.PTR.model.Feed;
 import PTR.PTR.model.FeedComment;
+import PTR.PTR.repository.FeedCommentLikeRepository;
 import PTR.PTR.repository.FeedCommentRepository;
 import PTR.PTR.repository.FeedRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,10 +18,12 @@ import java.util.Optional;
 public class FeedCommentService {
     FeedCommentRepository feedCommentRepository;
     FeedRepository feedRepository;
+    FeedCommentLikeRepository feedCommentLikeRepository;
 
-    public FeedCommentService(FeedCommentRepository feedCommentRepository, FeedRepository feedRepository) {
+    public FeedCommentService(FeedCommentRepository feedCommentRepository, FeedRepository feedRepository, FeedCommentLikeRepository feedCommentLikeRepository) {
         this.feedCommentRepository = feedCommentRepository;
         this.feedRepository = feedRepository;
+        this.feedCommentLikeRepository = feedCommentLikeRepository;
     }
 
     //댓글달기
@@ -34,7 +38,19 @@ public class FeedCommentService {
     }
 
     //댓글삭제
+    @Transactional
     public void deleteFeedComment(FeedComment feedComment){
+        List<FeedComment> feedCommentInt = feedCommentRepository.findByFeedComment(feedComment);
+        feedCommentLikeRepository.deleteByFeedComment(feedComment);
+        if(!feedCommentInt.isEmpty()){
+            for(int i=0; i<feedCommentInt.size(); i++){
+                feedCommentLikeRepository.deleteByFeedComment(feedCommentInt.get(i));
+                feedCommentInt.addAll(feedCommentRepository.findByFeedComment(feedCommentInt.get(i)));
+            }
+            for(int i=feedCommentInt.size()-1; i>=0; i--){
+                feedCommentRepository.deleteById(feedCommentInt.get(i).getId());
+            }
+        }
         feedCommentRepository.deleteById(feedComment.getId());
     }
 
@@ -60,5 +76,9 @@ public class FeedCommentService {
     @Transactional
     public void deleteFeedCommentByFeed(Feed feed) {
         feedCommentRepository.deleteByFeed(feed);
+    }
+
+    public List<FeedComment> getFeedCommentByFeedComment(FeedComment feedComment){
+        return feedCommentRepository.findByFeedComment(feedComment);
     }
 }

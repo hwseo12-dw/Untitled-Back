@@ -3,6 +3,7 @@ package PTR.PTR.controller;
 import PTR.PTR.model.Feed;
 import PTR.PTR.model.FeedComment;
 import PTR.PTR.model.FeedLike;
+import PTR.PTR.model.User;
 import PTR.PTR.service.FeedLikeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +46,8 @@ public class FeedLikeController {
     public boolean checkFeedLikeClick(@RequestBody FeedLike feedLike){
         return feedLikeService.checkFeedLikeClick(feedLike);
     }
-
+    @PostMapping("/api/getFeedLikeByUser")
+    public List<FeedLike> getFeedLikeByUser(@RequestBody User user){
+        return feedLikeService.getFeedLikeByUser(user);
+    }
 }

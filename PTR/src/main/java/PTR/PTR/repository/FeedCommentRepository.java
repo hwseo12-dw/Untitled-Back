@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface FeedCommentRepository extends JpaRepository<FeedComment,Long> {
     List<FeedComment> findByFeed(Feed feed);
-
-
+    List<FeedComment> findByFeedComment(FeedComment feedComment);
     void deleteByFeed(Feed feed);
 }

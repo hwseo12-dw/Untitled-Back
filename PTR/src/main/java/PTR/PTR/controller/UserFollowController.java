@@ -16,7 +16,7 @@ public class UserFollowController {
     }
 
     @PostMapping("/api/userFollow")
-    public UserFollow saveUserFollow(@RequestBody UserFollow userFollow){
+    public String saveUserFollow(@RequestBody UserFollow userFollow){
         return userFollowService.saveUserFollow(userFollow);
     }
 

@@ -44,4 +44,9 @@ public class FeedCommentController {
     public void deleteFeedCommentByFeed(@RequestBody Feed feed){
         feedCommentService.deleteFeedCommentByFeed(feed);
     }
+
+    @PostMapping("/api/getFeedCommentByFeedComment")
+    public List<FeedComment> getFeedCommentByFeedComment(@RequestBody FeedComment feedComment){
+        return feedCommentService.getFeedCommentByFeedComment(feedComment);
+    }
 }

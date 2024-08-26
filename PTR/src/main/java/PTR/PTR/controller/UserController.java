@@ -40,7 +40,7 @@ public class UserController {
     public ResponseEntity<String> signup(@RequestBody SignupDto signupDto){
         String response = userService.saveUser(signupDto);
         if ("이미 등록된 아이디입니다.".equals(response)) {
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
         return new ResponseEntity<>("회원가입이 완료되었습니다.", HttpStatus.CREATED);
     }
