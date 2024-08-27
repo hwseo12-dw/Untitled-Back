@@ -10,7 +10,9 @@ import PTR.PTR.repository.UserCategoryRepository;
 import PTR.PTR.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +46,7 @@ public class UserService {
                 signupDto.getBirthday(),
                 LocalDateTime.now(),
                 "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzEwMDZfNTYg%2FMDAxNjk2NTkwNTMzMDAw.5EbiBwYZ9wWxrN831q0z4AC92SmxB6lE4i4nja-qzDkg.Nx6ER8bleU0SDZJc7s6SM5ITsJv9GP_WUa-RW_cwGuog.JPEG.tmvldkrk%2F105.jpg&type=sc960_832",
+                null,
                 "",
                 0,
                 authority);
@@ -125,5 +128,18 @@ public class UserService {
         User changeUser = userRepository.findByUserId(user.getUserId()).get();
         changeUser.setBirthday(user.getBirthday());
         return userRepository.save(changeUser);
+    }
+
+    public String uploadImage(MultipartFile file, String userId){
+        try {
+            byte[] fileBytes = file.getBytes();
+            User changeUser = userRepository.findByUserId(userId).get();
+            changeUser.setData(fileBytes);
+            userRepository.save(changeUser);
+            return "File uploaded to DB successfully: " + file;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Failed to upload file";
+        }
     }
 }
