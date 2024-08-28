@@ -4,6 +4,7 @@ import PTR.PTR.model.Feed;
 import PTR.PTR.model.User;
 import PTR.PTR.service.FeedService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +18,8 @@ public class FeedController {
     }
 
     @PostMapping("/api/feed")
-    public String saveFeed(@RequestBody Feed feed){
-        feedService.saveFeed(feed);
+    public String saveFeed(@RequestParam("file") MultipartFile file, @RequestParam("user") String userId, @ModelAttribute Feed feed){
+        feedService.saveFeed(file, userId, feed);
         return "정상작동";
     }
 
@@ -62,4 +63,9 @@ public class FeedController {
         return feedService.getNumberOfFeed(user);
     }
 
+//    @PostMapping("/api/feed")
+//    public String updateFeed2(@RequestParam("file") MultipartFile file, @RequestParam("user") String userId, @ModelAttribute Feed feed){
+//        feedService.saveFeed(file, userId, feed);
+//        return "정상작동";
+//    }
 }

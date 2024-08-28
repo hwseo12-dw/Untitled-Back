@@ -37,7 +37,7 @@ public class User implements UserDetails {
     @Column(name = "profile_img")
     private String profileImg = "https://cdn.pixabay.com/photo/2017/03/21/02/00/user-2160923_1280.png";
     @Lob
-    @Column(name = "data", columnDefinition = "LONGBLOB", unique = true)
+    @Column(name = "data", columnDefinition = "LONGBLOB")
     private byte[] data;
     @Column(name = "profile_text")
     private String profileText;

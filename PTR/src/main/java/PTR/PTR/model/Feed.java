@@ -22,6 +22,9 @@ public class Feed {
     private String text;
     @Column
     private String image = "https://cdn.pixabay.com/photo/2023/12/08/05/41/cat-8436848_1280.jpg";
+    @Lob
+    @Column(name = "image_data", columnDefinition = "LONGBLOB")
+    private byte[] imageData;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

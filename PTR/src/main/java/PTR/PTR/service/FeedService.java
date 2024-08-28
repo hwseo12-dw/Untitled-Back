@@ -6,7 +6,9 @@ import PTR.PTR.model.User;
 import PTR.PTR.repository.FeedRepository;
 import PTR.PTR.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +24,18 @@ public class FeedService {
     }
 
     // 피드 업로드
-    public Feed saveFeed(Feed feed){
-        feed.setCreatedAt(LocalDateTime.now());
-        return feedRepository.save(feed);
+    public Feed saveFeed(MultipartFile file, String userId, Feed feed){
+        try {
+            byte[] fileBytes = file.getBytes();
+            User user = userRepository.findByUserId(userId).get();
+            feed.setCreatedAt(LocalDateTime.now());
+            feed.setUser(user);
+            feed.setImageData(fileBytes);
+            return feedRepository.save(feed);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     // 피드 읽기
