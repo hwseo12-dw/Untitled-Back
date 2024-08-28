@@ -79,6 +79,26 @@ public class FeedService {
         }
     }
 
+    public Feed updateFeed2(MultipartFile file, Feed feed){
+        try {
+            Optional<Feed> feedOptional = feedRepository.findById(feed.getId());
+            if (feedOptional.isEmpty()){
+                throw new ResourceNotFoundException("Feed", "Id", feed.getId());
+            }else {
+                byte[] fileBytes = file.getBytes();
+                Feed temp = feedOptional.get();
+                temp.setText(feed.getText());
+                temp.setUpdateTime(LocalDateTime.now());
+                temp.setImageData(fileBytes);
+                feedRepository.save(temp);
+                return temp;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     //피드 아이디로 피드 한 개 불러오기
     public Optional<Feed> getFeedByFeedId(Feed feed) {
         return feedRepository.findById(feed.getId());

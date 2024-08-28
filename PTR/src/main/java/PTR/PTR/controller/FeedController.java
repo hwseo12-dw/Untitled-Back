@@ -63,9 +63,9 @@ public class FeedController {
         return feedService.getNumberOfFeed(user);
     }
 
-//    @PostMapping("/api/feed")
-//    public String updateFeed2(@RequestParam("file") MultipartFile file, @RequestParam("user") String userId, @ModelAttribute Feed feed){
-//        feedService.saveFeed(file, userId, feed);
-//        return "정상작동";
-//    }
+    @PostMapping("/api/updateFeed")
+    public String updateFeed2(@RequestParam("file") MultipartFile file, @ModelAttribute Feed feed){
+        feedService.updateFeed2(file, feed);
+        return "정상작동";
+    }
 }
