@@ -64,7 +64,7 @@ public class FeedController {
     }
 
     @PostMapping("/api/updateFeed")
-    public String updateFeed2(@RequestParam("file") MultipartFile file, @ModelAttribute Feed feed){
+    public String updateFeed2(@RequestParam(value = "file", required = false) MultipartFile file, @ModelAttribute Feed feed){
         feedService.updateFeed2(file, feed);
         return "정상작동";
     }

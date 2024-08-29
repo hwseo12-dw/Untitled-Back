@@ -85,11 +85,13 @@ public class FeedService {
             if (feedOptional.isEmpty()){
                 throw new ResourceNotFoundException("Feed", "Id", feed.getId());
             }else {
-                byte[] fileBytes = file.getBytes();
                 Feed temp = feedOptional.get();
+                if(file!=null){
+                    byte[] fileBytes = file.getBytes();
+                    temp.setImageData(fileBytes);
+                }
                 temp.setText(feed.getText());
                 temp.setUpdateTime(LocalDateTime.now());
-                temp.setImageData(fileBytes);
                 feedRepository.save(temp);
                 return temp;
             }
