@@ -3,6 +3,7 @@ package PTR.PTR.service;
 import PTR.PTR.exception.ResourceNotFoundException;
 import PTR.PTR.model.Feed;
 import PTR.PTR.model.FeedComment;
+import PTR.PTR.model.User;
 import PTR.PTR.repository.FeedCommentLikeRepository;
 import PTR.PTR.repository.FeedCommentRepository;
 import PTR.PTR.repository.FeedRepository;
@@ -80,5 +81,9 @@ public class FeedCommentService {
 
     public List<FeedComment> getFeedCommentByFeedComment(FeedComment feedComment){
         return feedCommentRepository.findByFeedComment(feedComment);
+    }
+
+    public List<FeedComment> getFeedCommentByUser(User user){
+        return feedCommentRepository.findByUser(user);
     }
 }
