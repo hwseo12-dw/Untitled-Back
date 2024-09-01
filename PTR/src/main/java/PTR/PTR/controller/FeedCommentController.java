@@ -2,6 +2,7 @@ package PTR.PTR.controller;
 
 import PTR.PTR.model.Feed;
 import PTR.PTR.model.FeedComment;
+import PTR.PTR.model.User;
 import PTR.PTR.service.FeedCommentService;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,5 +49,10 @@ public class FeedCommentController {
     @PostMapping("/api/getFeedCommentByFeedComment")
     public List<FeedComment> getFeedCommentByFeedComment(@RequestBody FeedComment feedComment){
         return feedCommentService.getFeedCommentByFeedComment(feedComment);
+    }
+
+    @PostMapping("/api/getFeedCommentByUser")
+    public List<FeedComment> getFeedCommentByUser(@RequestBody User user){
+        return feedCommentService.getFeedCommentByUser(user);
     }
 }
