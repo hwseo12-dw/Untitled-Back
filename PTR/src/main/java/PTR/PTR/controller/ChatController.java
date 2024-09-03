@@ -13,11 +13,4 @@ public class ChatController {
     public ChatMessageDto sendMessage(ChatMessageDto chatMessage) {
         return chatMessage;
     }
-
-    @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
-    public ChatMessageDto addUser(ChatMessageDto chatMessage) {
-        chatMessage.setContent(chatMessage.getSender() + " joined");
-        return chatMessage;
-    }
 }

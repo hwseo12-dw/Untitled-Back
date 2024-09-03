@@ -81,7 +81,7 @@ public class LectureService {
     }
 
     public List<Lecture> findAllLecture(){
-        return lectureRepository.findAll().reversed();
+        return lectureRepository.findAll();
     }
 
     public Lecture getLectureById(long id) {

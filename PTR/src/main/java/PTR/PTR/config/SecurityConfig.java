@@ -17,6 +17,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -24,9 +25,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     @Autowired
     private UserDetailService userDetailService;
+    @Autowired
+    private CorsConfigurationSource corsConfigurationSource;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource)) // CORS 설정 적용
                 .authorizeRequests(auth -> auth
                         .requestMatchers(
                                 new AntPathRequestMatcher("/user/login"), // user/* => user의 자식만 || user/** => user의 자식의 자식까지 모두
@@ -35,6 +39,7 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/ptr/**"),
                                 new AntPathRequestMatcher("/css/**"),
                                 new AntPathRequestMatcher("/js/**"),
+                                new AntPathRequestMatcher("/ws/**"),
                                 new AntPathRequestMatcher("/**"),
                                 new AntPathRequestMatcher("/api")
                         ).permitAll()
