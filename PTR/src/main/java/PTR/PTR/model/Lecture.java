@@ -27,12 +27,11 @@ public class Lecture {
     private String description;
     @Column(name = "lecture_name")
     private String lectureName;
+    @Column(name = "price")
+    private int price;
+    @Column(name = "url")
+    private String url;
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-    @Column(name = "url")
-    private String url;
-    @Column(name = "price")
-    private int price;
-
 }
