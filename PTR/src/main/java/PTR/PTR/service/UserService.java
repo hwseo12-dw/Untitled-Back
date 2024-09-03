@@ -6,6 +6,7 @@ import PTR.PTR.model.Authority;
 import PTR.PTR.model.Category;
 import PTR.PTR.model.User;
 import PTR.PTR.model.UserCategory;
+import PTR.PTR.repository.AuthorityRepository;
 import PTR.PTR.repository.UserCategoryRepository;
 import PTR.PTR.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,11 +23,13 @@ import java.util.stream.Collectors;
 public class UserService {
     UserRepository userRepository;
     UserCategoryRepository userCategoryRepository;
+    AuthorityRepository authorityRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserService(UserRepository userRepository, UserCategoryRepository userCategoryRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserService(UserRepository userRepository, UserCategoryRepository userCategoryRepository, AuthorityRepository authorityRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.userCategoryRepository = userCategoryRepository;
+        this.authorityRepository = authorityRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -37,6 +40,11 @@ public class UserService {
         }
         Authority authority = new Authority();
         authority.setAuthorityName("ROLE_USER");
+
+        Optional<Authority> authorityOptional = authorityRepository.findById("ROLE_USER");
+        if (authorityOptional.isEmpty()){
+            authorityRepository.save(authority);
+        }
 
         User user = new User(
                 signupDto.getUserId(),
