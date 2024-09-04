@@ -17,41 +17,53 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
+
     @Autowired
     private UserDetailService userDetailService;
-    @Autowired
-    private CorsConfigurationSource corsConfigurationSource;
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource)) // CORS 설정 적용
-                .authorizeRequests(auth -> auth
-                        .requestMatchers(
-                                new AntPathRequestMatcher("/user/login"), // user/* => user의 자식만 || user/** => user의 자식의 자식까지 모두
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(new AntPathRequestMatcher("/user/login"),
                                 new AntPathRequestMatcher("/user/signup"),
                                 new AntPathRequestMatcher("/signup"),
                                 new AntPathRequestMatcher("/ptr/**"),
                                 new AntPathRequestMatcher("/css/**"),
                                 new AntPathRequestMatcher("/js/**"),
-                                new AntPathRequestMatcher("/ws/**"),
-                                new AntPathRequestMatcher("/**"),
-                                new AntPathRequestMatcher("/api")
-                        ).permitAll()
-                        .anyRequest().authenticated()) // 모든 요청에 인증을 받음
-                 // formLogin : 정적 로그인 페이지가 존재하는 경우 사용 , defaultSuccessUrl : 로그인 성공시 /articles로  로그인 페이지를 직접 만들기 위함
-                .sessionManagement(session -> session // session 관리 시 필요
+                                new AntPathRequestMatcher("/api/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/ws/**")).authenticated()
+                        .anyRequest().authenticated())
+                .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                .csrf(AbstractHttpConfigurer::disable) // 더 좋은 보안을 사용할 거라 csrf(다른 사이트의 접속을 차단함/피싱을 막기 위함)를 안 씀
+                .csrf(AbstractHttpConfigurer::disable)
                 .exceptionHandling(exception -> exception
-                        .authenticationEntryPoint(new MyAuthenticationEntryPoint()) // 인증 실패
-                        .accessDeniedHandler(new MyAccessDeniedHandler())) // 권한 실패
+                        .authenticationEntryPoint(new MyAuthenticationEntryPoint())
+                        .accessDeniedHandler(new MyAccessDeniedHandler()))
                 .build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // React 앱의 URL
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean

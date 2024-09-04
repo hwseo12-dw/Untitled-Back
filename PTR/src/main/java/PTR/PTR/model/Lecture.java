@@ -21,6 +21,8 @@ public class Lecture {
     private long id;
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+    @Column(name="thumbnail")
+    private String thumbnail;
     @Column(name = "image")
     private String image;
     @Column(name = "description")
