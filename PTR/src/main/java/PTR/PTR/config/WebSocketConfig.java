@@ -1,6 +1,6 @@
 package PTR.PTR.config;
 
-import PTR.PTR.handler.ChatHandler;
+import PTR.PTR.exception.ChatHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -19,9 +19,8 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(chatHandler, "/ws/chat")
+        registry.addHandler(new ChatHandler(), "/websocket/chat")
                 .setAllowedOrigins("http://localhost:3000") // React 앱의 URL 허용
-                .addInterceptors(new HttpSessionHandshakeInterceptor())
                 .withSockJS();
     }
 }

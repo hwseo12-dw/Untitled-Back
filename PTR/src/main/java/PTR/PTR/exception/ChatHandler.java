@@ -1,4 +1,4 @@
-package PTR.PTR.handler;
+package PTR.PTR.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class ChatHandler extends TextWebSocketHandler {
 
-    private static final Logger log = LoggerFactory.getLogger(ChatHandler.class); // Logger 객체 선언
+    private static final Logger log = LoggerFactory.getLogger(ChatHandler.class);
 
     private static List<WebSocketSession> sessions = new ArrayList<>();
 

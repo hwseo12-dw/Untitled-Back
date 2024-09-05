@@ -34,8 +34,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // CORS 설정
                 .authorizeHttpRequests(auth -> auth
+                        // 아래 경로는 인증 없이 접근 가능
                         .requestMatchers(new AntPathRequestMatcher("/user/login"),
                                 new AntPathRequestMatcher("/user/signup"),
                                 new AntPathRequestMatcher("/signup"),
@@ -43,14 +44,17 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/css/**"),
                                 new AntPathRequestMatcher("/js/**"),
                                 new AntPathRequestMatcher("/api/**")).permitAll()
+                        // WebSocket 경로는 인증 필요
                         .requestMatchers(new AntPathRequestMatcher("/ws/**")).authenticated()
-                        .anyRequest().authenticated())
+                        // 나머지 모든 경로는 인증 필요
+                        .anyRequest().authenticated()
+                )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                .csrf(AbstractHttpConfigurer::disable)
+                        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)) // 세션 관리 설정
+                .csrf(AbstractHttpConfigurer::disable) // CSRF 비활성화 (WebSocket 사용 시 필요)
                 .exceptionHandling(exception -> exception
-                        .authenticationEntryPoint(new MyAuthenticationEntryPoint())
-                        .accessDeniedHandler(new MyAccessDeniedHandler()))
+                        .authenticationEntryPoint(new MyAuthenticationEntryPoint()) // 인증 실패 처리
+                        .accessDeniedHandler(new MyAccessDeniedHandler())) // 권한 실패 처리
                 .build();
     }
 
@@ -78,4 +82,6 @@ public class SecurityConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
 }
