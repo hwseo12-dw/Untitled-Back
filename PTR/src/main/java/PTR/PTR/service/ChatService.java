@@ -1,11 +1,31 @@
 package PTR.PTR.service;
 
+import PTR.PTR.dto.ChatMessageDto;
+import PTR.PTR.model.ChatMessage;
+import PTR.PTR.repository.ChatMessageRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ChatService {
-    // 채팅 메시지 저장, 사용자 관리 등의 로직 추가
-    public void saveChatMessage(String userName, String message) {
-        // 메시지를 데이터베이스에 저장하거나 비즈니스 로직 처리
+
+    private final ChatMessageRepository chatMessageRepository;
+
+    public ChatService(ChatMessageRepository chatMessageRepository) {
+        this.chatMessageRepository = chatMessageRepository;
+    }
+
+    public void saveMessage(ChatMessageDto chatMessageDto) {
+        ChatMessage chatMessage = new ChatMessage();
+        chatMessage.setContent(chatMessageDto.getContent());
+        chatMessage.setSenderId(chatMessageDto.getSenderId());
+        chatMessage.setSenderName(chatMessageDto.getSenderName());
+
+        chatMessageRepository.save(chatMessage);
+    }
+
+    public List<ChatMessage> getChatHistory(String lectureId) {
+        return chatMessageRepository.findByLectureId(lectureId);
     }
 }
