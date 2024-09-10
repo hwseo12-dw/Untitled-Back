@@ -10,5 +10,5 @@ import java.util.List;
 public interface ChatMessageRepository extends JpaRepository<ChatMessage, Long> {
 
     // 특정 강의에 대한 채팅 메시지를 조회하는 메서드
-    public List<ChatMessage> findByLectureId(Long lectureId);
+    List<ChatMessage> findByLectureId(Long lectureId);
 }

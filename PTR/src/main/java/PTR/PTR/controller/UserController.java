@@ -83,6 +83,10 @@ public class UserController {
         SessionDto sessionDto = new SessionDto();
         sessionDto.setUserId(authentication.getName());
         sessionDto.setAuthority(authentication.getAuthorities());
+
+        // 로그로 유저 정보를 확인
+        System.out.println("Authenticated user: " + authentication.getName());
+
         return sessionDto;
     }
     // 유저 카테고리 수정 및 저장

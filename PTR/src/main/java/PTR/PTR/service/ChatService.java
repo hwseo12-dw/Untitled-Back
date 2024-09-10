@@ -30,7 +30,7 @@ public class ChatService {
 
     public User findByUsername(String userName) {
         return userRepository.findByUserName(userName)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + userName));
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with userName: " + userName));
     }
 
     public void saveMessage(ChatMessage chatMessage) {
