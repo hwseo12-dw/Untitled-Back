@@ -39,7 +39,7 @@ public class ChatController {
         System.out.println("Received message from client: " + chatMessage.getUser().getUserId());
 
         // 메시지 처리 후 브로드캐스트
-        ChatMessageDTO chatMessageDTO = new ChatMessageDTO(chatMessage.getContent(), chatMessage.getUser().getUserId(), Long.parseLong(lectureId));
+        ChatMessageDTO chatMessageDTO = new ChatMessageDTO(chatMessage.getContent(), chatMessage.getUser().getUserId());
 
         // 서버에서 클라이언트로 전송할 데이터 로그 출력
         System.out.println("Broadcasting message: " + chatMessageDTO);
