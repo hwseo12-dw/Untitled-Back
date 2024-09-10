@@ -1,5 +1,6 @@
 package PTR.PTR.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,11 +45,17 @@ public class User implements UserDetails {
     @Column
     private int coin;
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_authority")
     private Authority authority;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        // authority가 null일 때 처리
+        if (authority == null) {
+            // 기본 권한을 제공하거나 적절한 예외 처리 로직을 추가
+            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")); // 기본 권한 예시
+        }
         return Collections.singletonList(new SimpleGrantedAuthority(authority.getAuthorityName()));
     }
 

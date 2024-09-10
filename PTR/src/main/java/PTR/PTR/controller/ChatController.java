@@ -3,6 +3,7 @@ package PTR.PTR.controller;
 import PTR.PTR.model.ChatMessage;
 import PTR.PTR.model.User;
 import PTR.PTR.service.ChatService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -23,14 +24,16 @@ public class ChatController {
     }
 
     @MessageMapping("/chat.sendMessage/{lectureId}")
-    public void sendMessage(@DestinationVariable String lectureId, ChatMessage chatMessage) {
-        // 로그인한 사용자 정보 가져오기
-        String userName = chatMessage.getUser().getUserName();
-        User user = chatService.findByUsername(userName); // Service에서 사용자 정보 가져오기
+    public void sendMessage(@DestinationVariable String lectureId, @Payload ChatMessage chatMessage) {
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        // 채팅 메시지를 처리하고 브로드캐스트
-        chatMessage.setUser(user);  // 메시지의 사용자 설정
-        chatService.saveMessage(chatMessage);
-        messagingTemplate.convertAndSend("/topic/lecture/" + lectureId, chatMessage);
+        try {
+            // JSON으로 변환하여 메시지를 전송
+            String jsonMessage = objectMapper.writeValueAsString(chatMessage);
+            System.out.println("Broadcasting message: " + jsonMessage);
+            messagingTemplate.convertAndSend("/topic/lecture/" + lectureId, jsonMessage);
+        } catch (Exception e) {
+            System.err.println("Error broadcasting message: " + e.getMessage());
+        }
     }
 }
