@@ -9,8 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ChatMessageDto {
+public class ChatMassageDTO {
     private String content;
-    private String senderId;
-    private String senderName;
+    private Long lectureId;
+    private String userId;
 }

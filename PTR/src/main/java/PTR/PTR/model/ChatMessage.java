@@ -18,7 +18,10 @@ public class ChatMessage {
     private Long id;
 
     private String content;
-    private String senderId;
-    private String senderName;
-    private String lectureId;
+    @ManyToOne
+    @JoinColumn(name = "lecture_id")
+    private Lecture lecture;
+    @ManyToOne
+    @JoinColumn(name = "user_name")
+    private User user;
 }

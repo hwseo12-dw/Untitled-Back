@@ -1,23 +1,17 @@
 package PTR.PTR.controller;
 
-import PTR.PTR.dto.ChatMessageDto;
 import PTR.PTR.model.ChatMessage;
+import PTR.PTR.model.User;
 import PTR.PTR.service.ChatService;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Controller
+@RestController
 public class ChatController {
 
     private final ChatService chatService;
@@ -28,17 +22,15 @@ public class ChatController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    @MessageMapping("/chat.sendMessage")
-    public void sendMessage(@Payload ChatMessageDto chatMessage, SimpMessageHeaderAccessor headerAccessor) {
-        // 사용자 인증 정보 가져오기
-        String username = (String) headerAccessor.getSessionAttributes().get("username");
-
-        if (username != null) {
-            chatMessage.setSenderName(username);
-        }
+    @MessageMapping("/chat.sendMessage/{lectureId}")
+    public void sendMessage(@DestinationVariable String lectureId, ChatMessage chatMessage) {
+        // 로그인한 사용자 정보 가져오기
+        String userName = chatMessage.getUser().getUserName();
+        User user = chatService.findByUsername(userName); // Service에서 사용자 정보 가져오기
 
         // 채팅 메시지를 처리하고 브로드캐스트
+        chatMessage.setUser(user);  // 메시지의 사용자 설정
         chatService.saveMessage(chatMessage);
-        messagingTemplate.convertAndSend("/topic/public", chatMessage);
+        messagingTemplate.convertAndSend("/topic/lecture/" + lectureId, chatMessage);
     }
 }
